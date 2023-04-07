@@ -104,7 +104,7 @@ public class Window {
             throw new IllegalStateException("Failed to load GLFW !");
         }
 
-        // ?????
+
         glfwSetCursorPosCallback(glfwWindow, MouseListener::mousePosCallback);
         glfwSetMouseButtonCallback(glfwWindow, MouseListener::mouseButtonCallback);
         glfwSetScrollCallback(glfwWindow, MouseListener::mouseScrollCallback);
@@ -123,6 +123,12 @@ public class Window {
         GL.createCapabilities();
 
         Window.changeScene(0);
+
+        // Elég egyszer
+        // Van amikor módosítani kell
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
 
     }
 
