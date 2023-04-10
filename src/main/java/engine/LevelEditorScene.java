@@ -43,7 +43,7 @@ public class LevelEditorScene extends Scene {
         // camera.position.x -= dt * 50.0f;
         // camera.position.y -= dt * 30.0f;
 
-
+        System.out.println("FPS: " + (1.0 / dt));
 
         for (GameObject go : this.gameObjects) {
             go.update(dt);

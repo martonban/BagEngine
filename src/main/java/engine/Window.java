@@ -119,7 +119,7 @@ public class Window {
         glfwMakeContextCurrent(glfwWindow);
 
         // Engedélyezzük a 'v-sync'-et
-        glfwSwapInterval(1);
+        //glfwSwapInterval(1);
 
         // Láthatóvá tesszük az abalkot
         glfwShowWindow(glfwWindow);
