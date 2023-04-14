@@ -105,7 +105,7 @@ public class RenderBatch {
         shader.uploadMat4f("uProjection", Window.getScene().camera().getProjectionMatrix());
         shader.uploadMat4f("uView", Window.getScene().camera().getViewMatrix());
         for(int i = 0; i < textures.size(); i++) {
-            glActiveTexture(GL_TEXTURE0 + i);
+            glActiveTexture(GL_TEXTURE0 + i + 1);
             textures.get(i).bind();
         }
         shader.uploadIntArray("uTextures", texSlots);
@@ -139,7 +139,7 @@ public class RenderBatch {
         if (sprite.getTexture() != null) {
             for (int i = 0; i < textures.size(); i++) {
                 if(textures.get(i) == sprite.getTexture()) {
-                    texID = i;
+                    texID = i + 1;
                     break;
                 }
             }
