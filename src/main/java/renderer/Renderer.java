@@ -25,9 +25,12 @@ public class Renderer {
         boolean added = false;
         for (RenderBatch batch : batches) {
             if (batch.hasRoom()) {
-                batch.addSprite(sprite);
-                added = true;
-                break;
+                Texture tex = sprite.getTexture();
+                if (tex == null || (batch.hasTexture(tex) || batch.hasTextureRoom())) {
+                    batch.addSprite(sprite);
+                    added = true;
+                    break;
+                }
             }
         }
 
@@ -41,7 +44,7 @@ public class Renderer {
     }
 
     public void render() {
-        for(RenderBatch batch : batches ) {
+        for(RenderBatch batch : batches) {
             batch.render();
         }
     }
