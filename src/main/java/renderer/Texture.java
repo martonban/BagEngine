@@ -13,6 +13,7 @@ public class Texture {
 
     private String filePath;
     private int texID;
+    private int width, height;
 
     public Texture(String filePath) {
         this.filePath = filePath;
@@ -35,8 +36,15 @@ public class Texture {
         ByteBuffer image = stbi_load(filePath, width, height, channels, 0);
 
         if (image != null) {
-            glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width.get(0), height.get(0),
+            this.width = width.get(0);
+            this.height = height.get(0);
+            if(channels.get(0) == 3){
+                glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width.get(0), height.get(0),
                     0, GL_RGBA, GL_UNSIGNED_BYTE, image);
+            } else if (channels.get(0) == 4) {
+                glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width.get(0), height.get(0),
+                        0, GL_RGBA, GL_UNSIGNED_BYTE, image);
+            }
         } else {
             assert false: "Error(Texture): Could not load image '" + filePath + "'";
 
@@ -53,4 +61,11 @@ public class Texture {
         glBindTexture(GL_TEXTURE, 0);
     }
 
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
 }

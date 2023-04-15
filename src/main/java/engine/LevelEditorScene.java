@@ -1,6 +1,7 @@
 package engine;
 
 
+import components.Sprite;
 import components.SpriteRenderer;
 import org.joml.Vector2f;
 import org.joml.Vector4f;
@@ -21,13 +22,13 @@ public class LevelEditorScene extends Scene {
 
         GameObject obj1 = new GameObject("Object 1", new Transform(new Vector2f(100,100),
                 new Vector2f(256, 256)));
-        obj1.addComponent(new SpriteRenderer(AssetPool.getTexture("assets/textures/mario.png")));
+        obj1.addComponent(new SpriteRenderer(new Sprite(AssetPool.getTexture("assets/textures/mario.png"))));
         this.addGameObjectToScene(obj1);
 
 
         GameObject obj2 = new GameObject("Object 2", new Transform(new Vector2f(400,100),
                 new Vector2f(256, 256)));
-        obj2.addComponent(new SpriteRenderer(AssetPool.getTexture("assets/textures/goomba.png")));
+        obj2.addComponent(new SpriteRenderer( new Sprite(AssetPool.getTexture("assets/textures/goomba.png"))));
         this.addGameObjectToScene(obj2);
 
 
