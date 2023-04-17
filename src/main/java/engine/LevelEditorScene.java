@@ -10,6 +10,8 @@ import util.AssetPool;
 
 public class LevelEditorScene extends Scene {
 
+    private GameObject obj1;
+
 
     public LevelEditorScene() {
 
@@ -24,7 +26,7 @@ public class LevelEditorScene extends Scene {
 
         Spritesheet sprites = AssetPool.getSpritesheet("assets/textures/spritesheet.png");
 
-        GameObject obj1 = new GameObject("Object 1", new Transform(new Vector2f(100,100),
+        obj1 = new GameObject("Object 1", new Transform(new Vector2f(100,100),
                 new Vector2f(256, 256)));
         obj1.addComponent(new SpriteRenderer(sprites.getSprite(0)));
         this.addGameObjectToScene(obj1);
@@ -32,7 +34,7 @@ public class LevelEditorScene extends Scene {
 
         GameObject obj2 = new GameObject("Object 2", new Transform(new Vector2f(400,100),
                 new Vector2f(256, 256)));
-        obj2.addComponent(new SpriteRenderer(sprites.getSprite(10)));
+        obj2.addComponent(new SpriteRenderer(sprites.getSprite(20)));
         this.addGameObjectToScene(obj2);
 
     }
@@ -52,6 +54,8 @@ public class LevelEditorScene extends Scene {
         // camera.position.y -= dt * 30.0f;
 
         //System.out.println("FPS: " + (1.0 / dt));
+
+        obj1.transform.position.x += 10 * dt;
 
         for (GameObject go : this.gameObjects) {
             go.update(dt);
