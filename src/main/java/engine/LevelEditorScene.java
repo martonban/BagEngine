@@ -11,12 +11,12 @@ import util.AssetPool;
 public class LevelEditorScene extends Scene {
 
     private GameObject obj1;
+    private Spritesheet sprites;
 
 
     public LevelEditorScene() {
 
     }
-
 
     @Override
     public void init() {
@@ -24,7 +24,7 @@ public class LevelEditorScene extends Scene {
 
         this.camera = new Camera(new Vector2f());
 
-        Spritesheet sprites = AssetPool.getSpritesheet("assets/textures/spritesheet.png");
+        sprites = AssetPool.getSpritesheet("assets/textures/spritesheet.png");
 
         obj1 = new GameObject("Object 1", new Transform(new Vector2f(100,100),
                 new Vector2f(256, 256)));
@@ -48,14 +48,35 @@ public class LevelEditorScene extends Scene {
     }
 
 
+
+    private int spriteIndex = 0;
+    private float spriteFlipTime = 0.2f;
+    private float spriteFlipTimeLeft = 0.0f;
     @Override
     public void update(float dt) {
+        // Camera Changing
         // camera.position.x -= dt * 50.0f;
         // camera.position.y -= dt * 30.0f;
 
+        // FPS Counter
         //System.out.println("FPS: " + (1.0 / dt));
 
-        obj1.transform.position.x += 10 * dt;
+        // Movement
+       // obj1.transform.position.x += 10 * dt;
+
+
+        // Animation
+        spriteFlipTimeLeft -= dt;
+        if(spriteFlipTimeLeft <= 0) {
+            spriteFlipTimeLeft = spriteFlipTime;
+            spriteIndex++;
+            if(spriteIndex > 4) {
+                spriteIndex = 0;
+            }
+            obj1.getComponent(SpriteRenderer.class).setSprite(sprites.getSprite(spriteIndex));
+        }
+
+
 
         for (GameObject go : this.gameObjects) {
             go.update(dt);

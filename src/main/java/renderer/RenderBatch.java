@@ -104,6 +104,7 @@ public class RenderBatch {
             if(spr.isDirty()) {
                 loadVertexProperties(i);
                 spr.setClean();
+                rebufferData = true;
             }
         }
         if (rebufferData) {
