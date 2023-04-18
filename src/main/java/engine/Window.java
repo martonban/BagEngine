@@ -127,13 +127,10 @@ public class Window {
         // FONTOS!!!!
         GL.createCapabilities();
 
-        Window.changeScene(0);
-
-        // Elég egyszer
-        // Van amikor módosítani kell
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
+        Window.changeScene(0);
 
     }
 

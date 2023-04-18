@@ -27,15 +27,29 @@ public class LevelEditorScene extends Scene {
         sprites = AssetPool.getSpritesheet("assets/textures/spritesheet.png");
 
         obj1 = new GameObject("Object 1", new Transform(new Vector2f(100,100),
-                new Vector2f(256, 256)));
+                new Vector2f(256, 256)) , -1);
         obj1.addComponent(new SpriteRenderer(sprites.getSprite(0)));
         this.addGameObjectToScene(obj1);
 
 
-        GameObject obj2 = new GameObject("Object 2", new Transform(new Vector2f(400,100),
-                new Vector2f(256, 256)));
+        GameObject obj2 = new GameObject("Object 2", new Transform(new Vector2f(100,100),
+                new Vector2f(256, 256)), -2);
         obj2.addComponent(new SpriteRenderer(sprites.getSprite(20)));
         this.addGameObjectToScene(obj2);
+
+
+
+        GameObject obj3 = new GameObject("Object 1", new Transform(new Vector2f(400,100),
+                new Vector2f(256, 256)) , -2);
+        obj3.addComponent(new SpriteRenderer(sprites.getSprite(0)));
+        this.addGameObjectToScene(obj3);
+
+
+        GameObject obj4 = new GameObject("Object 2", new Transform(new Vector2f(400,100),
+                new Vector2f(256, 256)), -1);
+        obj4.addComponent(new SpriteRenderer(sprites.getSprite(20)));
+        this.addGameObjectToScene(obj4);
+
 
     }
 
@@ -64,8 +78,8 @@ public class LevelEditorScene extends Scene {
         // Movement
        // obj1.transform.position.x += 10 * dt;
 
-
         // Animation
+        /*
         spriteFlipTimeLeft -= dt;
         if(spriteFlipTimeLeft <= 0) {
             spriteFlipTimeLeft = spriteFlipTime;
@@ -75,7 +89,7 @@ public class LevelEditorScene extends Scene {
             }
             obj1.getComponent(SpriteRenderer.class).setSprite(sprites.getSprite(spriteIndex));
         }
-
+        */
 
 
         for (GameObject go : this.gameObjects) {
