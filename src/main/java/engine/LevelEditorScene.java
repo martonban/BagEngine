@@ -32,10 +32,6 @@ public class LevelEditorScene extends Scene {
         this.addGameObjectToScene(obj1);
 
 
-        GameObject obj2 = new GameObject("Object 2", new Transform(new Vector2f(100,100),
-                new Vector2f(256, 256)), -2);
-        obj2.addComponent(new SpriteRenderer(sprites.getSprite(20)));
-        this.addGameObjectToScene(obj2);
 
 
 
@@ -68,18 +64,7 @@ public class LevelEditorScene extends Scene {
     private float spriteFlipTimeLeft = 0.0f;
     @Override
     public void update(float dt) {
-        // Camera Changing
-        // camera.position.x -= dt * 50.0f;
-        // camera.position.y -= dt * 30.0f;
 
-        // FPS Counter
-        //System.out.println("FPS: " + (1.0 / dt));
-
-        // Movement
-       // obj1.transform.position.x += 10 * dt;
-
-        // Animation
-        /*
         spriteFlipTimeLeft -= dt;
         if(spriteFlipTimeLeft <= 0) {
             spriteFlipTimeLeft = spriteFlipTime;
@@ -89,7 +74,7 @@ public class LevelEditorScene extends Scene {
             }
             obj1.getComponent(SpriteRenderer.class).setSprite(sprites.getSprite(spriteIndex));
         }
-        */
+
 
 
         for (GameObject go : this.gameObjects) {
