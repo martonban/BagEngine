@@ -1,17 +1,21 @@
 package engine;
 
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import components.Sprite;
 import components.SpriteRenderer;
 import components.Spritesheet;
 import imgui.ImGui;
 import org.joml.Vector2f;
 import org.joml.Vector4f;
+import org.lwjgl.system.CallbackI;
 import util.AssetPool;
 
 public class LevelEditorScene extends Scene {
 
     private GameObject obj1;
+    private GameObject obj2;
     private Spritesheet sprites;
 
 
@@ -29,24 +33,29 @@ public class LevelEditorScene extends Scene {
 
         obj1 = new GameObject("Object 1", new Transform(new Vector2f(100,100),
                 new Vector2f(256, 256)) , -1);
-        obj1.addComponent(new SpriteRenderer(sprites.getSprite(0)));
+        SpriteRenderer obj1Sprite = new SpriteRenderer();
+        obj1Sprite.setColor(new Vector4f(1, 0, 0, 1));
+        obj1.addComponent(obj1Sprite);
         this.addGameObjectToScene(obj1);
         this.activeGameObject = obj1;
 
+        obj2 = new GameObject("Object 2", new Transform(new Vector2f(400,100),
+                new Vector2f(256, 256)) , -1);
+        SpriteRenderer obj2SpriteRenderer = new SpriteRenderer();
+        Sprite obj2Sprite = new Sprite();
+        obj2Sprite.setTexture(AssetPool.getTexture("assets/textures/blendImage2.png"));
+        obj2SpriteRenderer.setSprite(obj2Sprite);
+        obj2.addComponent(obj2SpriteRenderer);
+        this.addGameObjectToScene(obj2);
 
 
-
-
-        GameObject obj3 = new GameObject("Object 1", new Transform(new Vector2f(400,100),
-                new Vector2f(256, 256)) , -2);
-        obj3.addComponent(new SpriteRenderer(sprites.getSprite(0)));
-        this.addGameObjectToScene(obj3);
-
-
-        GameObject obj4 = new GameObject("Object 2", new Transform(new Vector2f(400,100),
-                new Vector2f(256, 256)), -1);
-        obj4.addComponent(new SpriteRenderer(sprites.getSprite(20)));
-        this.addGameObjectToScene(obj4);
+        Gson gson = new GsonBuilder()
+                .setPrettyPrinting()
+                .create();
+        String seralized = gson.toJson(obj1);
+        System.out.println(seralized);
+        GameObject obj = gson.fromJson(seralized, GameObject.class);
+        System.out.println(obj);
 
 
     }

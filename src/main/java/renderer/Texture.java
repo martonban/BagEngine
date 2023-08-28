@@ -15,7 +15,8 @@ public class Texture {
     private int texID;
     private int width, height;
 
-    public Texture(String filePath) {
+
+    public void init(String filePath) {
         this.filePath = filePath;
 
         // Texture 0
@@ -40,7 +41,7 @@ public class Texture {
             this.height = height.get(0);
             if(channels.get(0) == 3){
                 glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width.get(0), height.get(0),
-                    0, GL_RGBA, GL_UNSIGNED_BYTE, image);
+                        0, GL_RGBA, GL_UNSIGNED_BYTE, image);
             } else if (channels.get(0) == 4) {
                 glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width.get(0), height.get(0),
                         0, GL_RGBA, GL_UNSIGNED_BYTE, image);
