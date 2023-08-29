@@ -15,8 +15,8 @@ import util.AssetPool;
 public class LevelEditorScene extends Scene {
 
     private GameObject obj1;
-    private GameObject obj2;
     private Spritesheet sprites;
+    SpriteRenderer obj1Sprite;
 
 
     public LevelEditorScene() {
@@ -29,6 +29,10 @@ public class LevelEditorScene extends Scene {
 
         this.camera = new Camera(new Vector2f());
 
+        if (levelLoaded) {
+            return;
+        }
+
         sprites = AssetPool.getSpritesheet("assets/textures/spritesheet.png");
 
         obj1 = new GameObject("Object 1", new Transform(new Vector2f(100,100),
@@ -39,7 +43,7 @@ public class LevelEditorScene extends Scene {
         this.addGameObjectToScene(obj1);
         this.activeGameObject = obj1;
 
-        obj2 = new GameObject("Object 2", new Transform(new Vector2f(400,100),
+        GameObject obj2 = new GameObject("Object 2", new Transform(new Vector2f(400,100),
                 new Vector2f(256, 256)) , -1);
         SpriteRenderer obj2SpriteRenderer = new SpriteRenderer();
         Sprite obj2Sprite = new Sprite();
@@ -47,17 +51,6 @@ public class LevelEditorScene extends Scene {
         obj2SpriteRenderer.setSprite(obj2Sprite);
         obj2.addComponent(obj2SpriteRenderer);
         this.addGameObjectToScene(obj2);
-
-
-        Gson gson = new GsonBuilder()
-                .setPrettyPrinting()
-                .create();
-        String seralized = gson.toJson(obj1);
-        System.out.println(seralized);
-        GameObject obj = gson.fromJson(seralized, GameObject.class);
-        System.out.println(obj);
-
-
     }
 
     private void loadResources() {
@@ -70,23 +63,8 @@ public class LevelEditorScene extends Scene {
 
 
 
-    private int spriteIndex = 0;
-    private float spriteFlipTime = 0.2f;
-    private float spriteFlipTimeLeft = 0.0f;
     @Override
     public void update(float dt) {
-
-        spriteFlipTimeLeft -= dt;
-        if(spriteFlipTimeLeft <= 0) {
-            spriteFlipTimeLeft = spriteFlipTime;
-            spriteIndex++;
-            if(spriteIndex > 4) {
-                spriteIndex = 0;
-            }
-            obj1.getComponent(SpriteRenderer.class).setSprite(sprites.getSprite(spriteIndex));
-        }
-
-
 
         for (GameObject go : this.gameObjects) {
             go.update(dt);
