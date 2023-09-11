@@ -1,5 +1,6 @@
 package engine;
 
+import components.MouseControls;
 import imgui.*;
 import imgui.callbacks.ImStrConsumer;
 import imgui.callbacks.ImStrSupplier;
@@ -116,6 +117,11 @@ public class ImGuiLayer {
             if (!io.getWantCaptureMouse() && mouseDown[1]) {
                 ImGui.setWindowFocus(null);
             }
+
+            if (!io.getWantCaptureMouse()) {
+                MouseListener.mouseButtonCallback(w, button, action, mods);
+            }
+
         });
 
         glfwSetScrollCallback(glfwWindow, (w, xOffset, yOffset) -> {
