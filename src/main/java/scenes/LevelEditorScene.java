@@ -9,7 +9,9 @@ import engine.Transform;
 import imgui.ImGui;
 import imgui.ImVec2;
 import org.joml.Vector2f;
+import org.joml.Vector3f;
 import org.joml.Vector4f;
+import renderer.DebugDraw;
 import scenes.Scene;
 import util.AssetPool;
 
@@ -31,7 +33,7 @@ public class LevelEditorScene extends Scene {
         this.camera = new Camera(new Vector2f());
 
         sprites = AssetPool.getSpritesheet("assets/spritesheets/decorationsAndBlocks.png");
-
+        DebugDraw.addLine2D(new Vector2f(0.f, 0.f), new Vector2f(800.f, 800.f), new Vector3f(1.f, 0.f, 0.f), 1200);
         if (levelLoaded) {
             this.activeGameObject = gameObjects.get(0);
             return;
