@@ -15,7 +15,7 @@ import static org.lwjgl.opengl.GL30.glBindVertexArray;
 import static org.lwjgl.opengl.GL30.glGenVertexArrays;
 
 public class DebugDraw {
-    private static int MAX_LINES = 500;
+    private static final int MAX_LINES = 500;
     private static List<Line2D> lines = new ArrayList<>();
     private static float[] vertexArray = new float[MAX_LINES * 6 * 2];
     private static Shader shader = AssetPool.getShader("assets/shaders/debugLine2D.glsl");
@@ -33,13 +33,12 @@ public class DebugDraw {
         glBindBuffer(GL_ARRAY_BUFFER, vboID);
         glBufferData(GL_ARRAY_BUFFER, vertexArray.length * Float.BYTES, GL_DYNAMIC_DRAW);
 
-        // Enable the vertex array atrib
+        // Enable the vertex array atribb
         glVertexAttribPointer(0, 3, GL_FLOAT, false, 6 * Float.BYTES, 0);
         glEnableVertexAttribArray(0);
 
         glVertexAttribPointer(1, 3, GL_FLOAT, false, 6 * Float.BYTES, 3 * Float.BYTES);
         glEnableVertexAttribArray(1);
-
 
     }
 
@@ -81,7 +80,7 @@ public class DebugDraw {
         }
 
         glBindBuffer(GL_ARRAY_BUFFER, vboID);
-        glBufferSubData(GL_ARRAY_BUFFER, 0, Arrays.copyOfRange(vertexArray, 0, lines.size() * 6* 2));
+        glBufferSubData(GL_ARRAY_BUFFER, 0, Arrays.copyOfRange(vertexArray, 0, lines.size() * 6  * 2));
 
         shader.use();
         shader.uploadMat4f("uProjection", Window.getScene().camera().getProjectionMatrix());
@@ -93,7 +92,7 @@ public class DebugDraw {
         glEnableVertexAttribArray(1);
 
         // Draw Batch
-        glDrawArrays(GL_LINES, lines.size() * 6 * 2, lines.size());
+        glDrawArrays(GL_LINES, 0, lines.size() * 6 * 2);
 
         // DISABLE
         glDisableVertexAttribArray(0);

@@ -18,7 +18,7 @@ public class Line2D {
 
     public int beginFrame() {
         this.lifeTime--;
-        return  this.lifeTime;
+        return this.lifeTime;
     }
 
     public Vector2f getFrom() {
