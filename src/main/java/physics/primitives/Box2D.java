@@ -43,4 +43,9 @@ public class Box2D {
         }
         return vertices;
     }
+
+    public RigidBody2D getRigidBody () {
+        return this.rigidBody;
+    }
+
 }
