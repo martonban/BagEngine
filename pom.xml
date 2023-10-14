@@ -34,6 +34,11 @@
 
     <dependencies>
         <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version>
+        </dependency>
+        <dependency>
             <groupId>io.imgui.java</groupId>
             <artifactId>binding</artifactId>
             <version>1.76-0.9</version>
