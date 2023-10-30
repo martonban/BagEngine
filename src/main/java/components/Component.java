@@ -8,6 +8,13 @@ import org.joml.Vector4f;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 
+/*
+* This is an abstract class. Every GameObject can have multiple Component.
+* These GameObject need to have a common abstract class
+* The ImGui part is exposing data to the editor through Fields
+* */
+
+
 public abstract class Component {
 
     private static int ID_COUNTER = 0;
@@ -25,8 +32,15 @@ public abstract class Component {
 
     public void imgui() {
         try{
+            // Get all Declared data from the subclass e.g SpriteRenderer
             Field[] fields = this.getClass().getDeclaredFields();
+
+            // Go throw all of them Fields ang get the class(or type of the data), the name of the field and the value of it
+            // After we find the type, based on it, we'll set the imgui.
+            // And we can change the values throw imgui
             for( Field field : fields) {
+
+                // Identify private or transient data
                 boolean isTransient = Modifier.isTransient(field.getModifiers());
                 if(isTransient){
                     continue;
@@ -40,6 +54,7 @@ public abstract class Component {
                 Object value = field.get(this);
                 String name = field.getName();
 
+                // Go threw all possible data type, BASED ON OUR CODE!!!
                 if(type == int.class) {
                     int val = (int)value;
                     int[] imInt = {val};
@@ -82,6 +97,7 @@ public abstract class Component {
             e.printStackTrace();
         }
     }
+
     public void generateID() {
         if(this.uid == -1) {
             this.uid = ID_COUNTER++;

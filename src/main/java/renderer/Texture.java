@@ -1,6 +1,5 @@
 package renderer;
 
-
 import org.lwjgl.BufferUtils;
 
 import java.nio.ByteBuffer;
@@ -8,6 +7,11 @@ import java.nio.IntBuffer;
 
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.stb.STBImage.*;
+
+/*
+* This has two purpose  1) it is a data class for store Textures data
+*                       2) We upload 2D images to the GPU.
+*/
 
 public class Texture {
 
@@ -50,7 +54,6 @@ public class Texture {
             assert false: "Error(Texture): Could not load image '" + filePath + "'";
 
         }
-
         stbi_image_free(image);
     }
 
