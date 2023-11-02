@@ -15,9 +15,7 @@ import util.AssetPool;
 
 public class LevelEditorScene extends Scene {
 
-    private GameObject obj1;
     private Spritesheet sprites;
-    SpriteRenderer obj1Sprite;
 
     GameObject levelEditorStuff = new GameObject("Level Editor", new Transform(new Vector2f()), 0);
 
@@ -36,40 +34,19 @@ public class LevelEditorScene extends Scene {
         sprites = AssetPool.getSpritesheet("assets/spritesheets/decorationsAndBlocks.png");
         if (levelLoaded) {
             //this.activeGameObject = gameObjects.get(0);
-            return;
+            //return;
         }
 
-        /*
-        obj1 = new GameObject("Object 1", new Transform(new Vector2f(100,100),
-                new Vector2f(256, 256)) , -1);
-        SpriteRenderer obj1Sprite = new SpriteRenderer();
-        obj1Sprite.setColor(new Vector4f(1, 0, 0, 1));
-        obj1.addComponent(obj1Sprite);
-        obj1.addComponent(new RigidBody());
-        this.addGameObjectToScene(obj1);
-
-
-        GameObject obj2 = new GameObject("Object 2", new Transform(new Vector2f(400,100),
-                new Vector2f(256, 256)) , -1);
-        SpriteRenderer obj2SpriteRenderer = new SpriteRenderer();
-        Sprite obj2Sprite = new Sprite();
-        obj2Sprite.setTexture(AssetPool.getTexture("assets/textures/blendImage2.png"));
-        obj2SpriteRenderer.setSprite(obj2Sprite);
-        obj2.addComponent(obj2SpriteRenderer);
-        this.addGameObjectToScene(obj2);
-        */
     }
 
 
     private void loadResources() {
         AssetPool.getShader("assets/shaders/default.glsl");
 
-
         AssetPool.addSpritesheet("assets/spritesheets/decorationsAndBlocks.png",
                 new Spritesheet(AssetPool.getTexture("assets/spritesheets/decorationsAndBlocks.png"),
                         16, 16, 81, 0));
         AssetPool.getTexture("assets/textures/blendImage2.png");
-
     }
 
 

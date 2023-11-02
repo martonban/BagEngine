@@ -16,6 +16,7 @@ public class Renderer {
         this.batches = new ArrayList<>();
     }
 
+    // We check the given GameObject has a SpriteRenderer. If it has, we add to the batch.
     public void add(GameObject go) {
         SpriteRenderer spr = go.getComponent(SpriteRenderer.class);
         if (spr != null) {

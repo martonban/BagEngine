@@ -17,13 +17,25 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+*   This abstract class is the "blueprint" for a scene in the game engine. So If you want to create a scene, you need to implement this calss
+*
+*   Attributes:
+*       - Renderer: The Engine supports different renderers. Currently, we have a texture and a line renderer. This is an instance of the renderer class.
+*       - Camera: Every Scene needs to have a Camera.
+*       - gameObjects: It's a list of GameObjects. Every scene has their own GameObjects. There are multiples, so that's why it's a list.
+*       - activeGameObject: In the editor we can edit the attributes of an object through imGUI. So we need to know which game object are we editing.
+*       - isRunning: Self-explanatory
+*       - levelLoaded: This engine is support serialization. That data is annotated when the engine is ready to run (loaded every data from serializer)
+* */
+
 public abstract class Scene {
 
     protected Renderer renderer = new Renderer();
     protected Camera camera;
-    private boolean isRunning = false;
     protected List <GameObject> gameObjects = new ArrayList<>();
     protected GameObject activeGameObject = null;
+    private boolean isRunning = false;
     protected boolean levelLoaded = false;
 
     public Scene() {
@@ -34,6 +46,7 @@ public abstract class Scene {
 
     }
 
+    // Go throw every game object and start it. After that we pass the instance to the renderer.
     public void start () {
         for (GameObject go : gameObjects) {
             go.start();
@@ -41,6 +54,9 @@ public abstract class Scene {
         }
         isRunning = true;
     }
+
+    // If the scene isn't running, we just add to the gameObject list. The main reason for that is because the scene is not running, so to start it and give it to the renderer is unnecessary, cuz when we start the Scene it's going to be automatic.
+    // If the scene is running, we need to manually start it and give it to the renderer and the gameObject list.
     public void addGameObjectToScene(GameObject go) {
         if (!isRunning) {
             gameObjects.add(go);
@@ -70,6 +86,7 @@ public abstract class Scene {
 
     }
 
+    // This part is responsible when we stop the engine, everything is gonna saved by the Serializer.
     public void saveExit() {
         Gson gson = new GsonBuilder()
                 .setPrettyPrinting()
@@ -86,6 +103,7 @@ public abstract class Scene {
         }
     }
 
+    // This part is responsible when we start the engine, we need to load every game object. So we are going to be ready for start.
     public void load() {
         Gson gson = new GsonBuilder()
                 .setPrettyPrinting()
