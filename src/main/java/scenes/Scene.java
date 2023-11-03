@@ -88,6 +88,7 @@ public abstract class Scene {
 
     // This part is responsible when we stop the engine, everything is gonna saved by the Serializer.
     public void saveExit() {
+        // We create and setup the
         Gson gson = new GsonBuilder()
                 .setPrettyPrinting()
                 .registerTypeAdapter(Component.class, new ComponentDeserializer())
@@ -95,7 +96,7 @@ public abstract class Scene {
                 .create();
 
         try {
-            FileWriter writer = new FileWriter("level.txt");
+            FileWriter writer = new FileWriter("level.json");
             writer.write(gson.toJson(this.gameObjects));
             writer.close();
         } catch(IOException e) {
@@ -113,7 +114,7 @@ public abstract class Scene {
 
         String inFile = "";
         try {
-            inFile = new String(Files.readAllBytes(Paths.get("level.txt")));
+            inFile = new String(Files.readAllBytes(Paths.get("level.json")));
         } catch (IOException e) {
             e.printStackTrace();
         }
