@@ -46,7 +46,7 @@ public abstract class Scene {
 
     }
 
-    // Go throw every game object and start it. After that we pass the instance to the renderer.
+    // Go throw every game object and start it. After that, we pass the instance to the renderer.
     public void start () {
         for (GameObject go : gameObjects) {
             go.start();
@@ -88,13 +88,17 @@ public abstract class Scene {
 
     // This part is responsible when we stop the engine, everything is gonna saved by the Serializer.
     public void saveExit() {
-        // We create and setup the
+        // We create and set up the Gson, to know which class which Serializer(class) will use.
+        // If the code gets a Component, it will use ComponentDeserializer
+        // If the code gets a GameObject, it will use GameObjectDeserializer
         Gson gson = new GsonBuilder()
                 .setPrettyPrinting()
                 .registerTypeAdapter(Component.class, new ComponentDeserializer())
                 .registerTypeAdapter(GameObject.class, new GameObjectDeserializer())
                 .create();
 
+        // We'll create level .json (this is our save file)
+        // Then we will go through all the GameObjects and write into the file
         try {
             FileWriter writer = new FileWriter("level.json");
             writer.write(gson.toJson(this.gameObjects));
@@ -104,8 +108,9 @@ public abstract class Scene {
         }
     }
 
-    // This part is responsible when we start the engine, we need to load every game object. So we are going to be ready for start.
+    // This part is responsible when we start the engine, we need to load every game object and components. So we are going to be ready for start.
     public void load() {
+        // We create and set up the Gson, to know which class which Deserializer(class) will use.
         Gson gson = new GsonBuilder()
                 .setPrettyPrinting()
                 .registerTypeAdapter(Component.class, new ComponentDeserializer())
@@ -119,6 +124,7 @@ public abstract class Scene {
             e.printStackTrace();
         }
 
+        // If the file is not empty, we will create every GameObjects
         if (!inFile.equals("")) {
             int maxGoId = -1;
             int maxCompId = -1;
@@ -144,6 +150,4 @@ public abstract class Scene {
             this.levelLoaded = true;
         }
     }
-
-
 }
