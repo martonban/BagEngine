@@ -45,4 +45,8 @@ public class Line2D {
     public Vector2f getEnd () {
         return this.to;
     }
+
+    public float lengthSquared() {
+        return new Vector2f(to).sub(from).lengthSquared();
+    }
 }

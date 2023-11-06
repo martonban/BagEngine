@@ -17,7 +17,8 @@ public class LevelEditorScene extends Scene {
 
     private Spritesheet sprites;
 
-    GameObject levelEditorStuff = new GameObject("Level Editor", new Transform(new Vector2f()), 0);
+    // This game object is responsible for the DebugGrid and the SnapToGrid
+    GameObject developerToolGameObject = new GameObject("Level Editor", new Transform(new Vector2f()), 0);
 
     public LevelEditorScene() {
 
@@ -25,8 +26,8 @@ public class LevelEditorScene extends Scene {
 
     @Override
     public void init() {
-        levelEditorStuff.addComponent(new MouseControls());
-        levelEditorStuff.addComponent(new GridLines());
+        developerToolGameObject.addComponent(new MouseControls());
+        developerToolGameObject.addComponent(new GridLines());
 
         loadResources();
         this.camera = new Camera(new Vector2f());
@@ -54,7 +55,7 @@ public class LevelEditorScene extends Scene {
     float y = 0;
     @Override
     public void update(float dt) {
-        levelEditorStuff.update(dt);
+        developerToolGameObject.update(dt);
         DebugDraw.addCircle(new Vector2f(x,y), 64, new Vector3f(0, 0, 1), 1);
         x += 50f * dt;
         y += 50f * dt;
@@ -87,7 +88,7 @@ public class LevelEditorScene extends Scene {
             ImGui.pushID(i);
             if(ImGui.imageButton(id, spriteWidth, spriteHeight, texCoords[2].x, texCoords[0].y, texCoords[0].x, texCoords[2].y)){
                 GameObject object = Prefabs.generateSpriteObject(sprite, 32, 32);
-                levelEditorStuff.getComponent(MouseControls.class).pickupObject(object);
+                developerToolGameObject.getComponent(MouseControls.class).pickupObject(object);
 
             }
             ImGui.popID();

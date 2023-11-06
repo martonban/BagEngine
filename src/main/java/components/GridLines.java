@@ -6,6 +6,11 @@ import org.joml.Vector3f;
 import renderer.DebugDraw;
 import util.Settings;
 
+/*
+*   This code is responsible for drawing the grid lines to the scene
+*   If we want to use we need a scene where we have a gamObject with this component. If this game-object exists, it will have an effect automatically.
+*   Dependencies:    - util.Settings.java
+*/
 
 public class GridLines extends Component{
 
@@ -38,5 +43,4 @@ public class GridLines extends Component{
             }
         }
     }
-
 }
