@@ -68,6 +68,7 @@ public class Texture {
     public Texture (int width, int height) {
         this.filePath = "Generated";
 
+        // Generate texture on GPU
         texID = glGenTextures();
         glBindTexture(GL_TEXTURE_2D, texID);
 
@@ -100,11 +101,11 @@ public class Texture {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return false;
+        if (o == null) return false;
         if (!(o instanceof Texture)) return false;
-        Texture oTex = (Texture) o;
-        return oTex.getWidth() == this.width && oTex.getHeight() == this.height && oTex.getId() == this.texID &&
+        Texture oTex = (Texture)o;
+        return oTex.getWidth() == this.width && oTex.getHeight() == this.height &&
+                oTex.getId() == this.texID &&
                 oTex.getFilePath().equals(this.filePath);
     }
-
 }

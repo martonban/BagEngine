@@ -42,6 +42,7 @@ public class GameObject {
                 try {
                     return componentClass.cast(c);
                 } catch (ClassCastException e) {
+                    e.printStackTrace();
                     assert false : "Error: Casting a component.";
                 }
             }
