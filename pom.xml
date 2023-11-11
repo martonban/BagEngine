@@ -38,21 +38,25 @@
             <artifactId>junit</artifactId>
             <version>4.13.2</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/io.imgui.java/imgui-java-lwjgl3 -->
         <dependency>
             <groupId>io.imgui.java</groupId>
-            <artifactId>binding</artifactId>
-            <version>1.76-0.9</version>
+            <artifactId>imgui-java-lwjgl3</artifactId>
+            <version>1.80-1.5.0</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/io.imgui.java/imgui-java-binding -->
         <dependency>
             <groupId>io.imgui.java</groupId>
-            <artifactId>lwjgl3</artifactId>
-            <version>1.76-0.9</version>
+            <artifactId>imgui-java-binding</artifactId>
+            <version>1.80-1.5.0</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/io.imgui.java/imgui-java-natives-windows -->
         <dependency>
             <groupId>io.imgui.java</groupId>
-            <artifactId>natives-windows</artifactId>
-            <version>1.76-0.9</version>
+            <artifactId>imgui-java-natives-windows</artifactId>
+            <version>1.80-1.5.0</version>
         </dependency>
+
 
         <dependency>
             <groupId>org.lwjgl</groupId>

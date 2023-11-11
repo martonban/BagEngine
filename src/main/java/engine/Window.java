@@ -38,7 +38,7 @@ public class Window {
     private Window() {
         this.width = 1920;
         this.height = 1080;
-        this.title = "2D Texture Loader";
+        this.title = "Bag Engine - Editor";
         r = 1;
         g = 1;
         b = 1;
