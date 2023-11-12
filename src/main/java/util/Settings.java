@@ -8,6 +8,5 @@ public class Settings {
 
     // EDITOR UI SETTINGS
     public static int EDITOR_FONT_SIZE = 20;
-
     public static float EDITOR_TILE_SIZE_SCALE_XY = 3.0f;
 }
