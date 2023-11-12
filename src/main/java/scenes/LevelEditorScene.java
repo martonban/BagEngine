@@ -12,6 +12,7 @@ import org.joml.Vector2f;
 import org.joml.Vector3f;
 import renderer.DebugDraw;
 import util.AssetPool;
+import util.Settings;
 
 public class LevelEditorScene extends Scene {
 
@@ -92,8 +93,8 @@ public class LevelEditorScene extends Scene {
         float windowsX2 = windowPos.x + windowSize.x;
         for (int i = 0; i < sprites.size(); i++) {
             Sprite sprite = sprites.getSprite(i);
-            float spriteWidth = sprite.getWidth() * 3;
-            float spriteHeight = sprite.getHeight() * 3;
+            float spriteWidth = sprite.getWidth() * Settings.EDITOR_TILE_SIZE_SCALE_XY;
+            float spriteHeight = sprite.getHeight() * Settings.EDITOR_TILE_SIZE_SCALE_XY;
             int id = sprite.getTexId();
             Vector2f[] texCoords = sprite.getTexCoords();
 

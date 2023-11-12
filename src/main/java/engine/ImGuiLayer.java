@@ -8,6 +8,7 @@ import imgui.flag.*;
 import imgui.gl3.ImGuiImplGl3;
 import imgui.type.ImBoolean;
 import scenes.Scene;
+import util.Settings;
 
 import static org.lwjgl.glfw.GLFW.*;
 
@@ -162,7 +163,7 @@ public class ImGuiLayer {
 
         // Fonts merge example
         fontConfig.setPixelSnapH(true);
-        fontAtlas.addFontFromFileTTF("assets/fonts/segoeui.ttf", 22, fontConfig);
+        fontAtlas.addFontFromFileTTF("assets/fonts/segoeui.ttf", Settings.EDITOR_FONT_SIZE, fontConfig);
 
         fontConfig.destroy(); // After all fonts were added we don't need this config more
 
