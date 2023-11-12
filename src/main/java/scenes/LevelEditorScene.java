@@ -49,7 +49,7 @@ public class LevelEditorScene extends Scene {
 
         AssetPool.addSpritesheet("assets/spritesheets/decorationsAndBlocks.png",
                 new Spritesheet(AssetPool.getTexture("assets/spritesheets/decorationsAndBlocks.png"),
-                        16, 16, 81, 0));
+                        16, 16, 82, 0));
         AssetPool.getTexture("assets/textures/blendImage2.png");
 
         for (GameObject g : gameObjects) {
