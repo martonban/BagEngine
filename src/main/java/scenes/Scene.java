@@ -16,6 +16,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /*
 *   This abstract class is the "blueprint" for a scene in the game engine. So If you want to create a scene, you need to implement this calss
@@ -34,7 +35,6 @@ public abstract class Scene {
     protected Renderer renderer = new Renderer();
     protected Camera camera;
     protected List <GameObject> gameObjects = new ArrayList<>();
-    protected GameObject activeGameObject = null;
     private boolean isRunning = false;
     protected boolean levelLoaded = false;
 
@@ -72,15 +72,6 @@ public abstract class Scene {
 
     public Camera camera() {
         return this.camera;
-    }
-
-    public void sceneImgui() {
-        if(activeGameObject != null) {
-            ImGui.begin("Inspector");
-            activeGameObject.imgui();
-            ImGui.end();
-        }
-        imgui();
     }
 
     public void imgui() {
@@ -150,5 +141,12 @@ public abstract class Scene {
             Component.init(maxCompId);
             this.levelLoaded = true;
         }
+    }
+
+    public GameObject getGameObject(int gameObjectID) {
+        Optional<GameObject> result = this.gameObjects.stream()
+                .filter(gameObject -> gameObject.getUid() == gameObjectID)
+                .findFirst();
+        return result.orElse(null);
     }
 }
