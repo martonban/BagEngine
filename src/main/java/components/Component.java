@@ -16,7 +16,6 @@ import java.lang.reflect.Modifier;
 
 
 public abstract class Component {
-
     private static int ID_COUNTER = 0;
     private int uid = -1;
 
@@ -91,7 +90,6 @@ public abstract class Component {
                 if (isPrivate) {
                     field.setAccessible(false);
                 }
-
             }
         } catch (IllegalAccessException e) {
             e.printStackTrace();

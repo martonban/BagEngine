@@ -47,5 +47,4 @@ public class Box2D {
     public RigidBody2D getRigidBody () {
         return this.rigidBody;
     }
-
 }

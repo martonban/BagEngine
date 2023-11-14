@@ -20,7 +20,6 @@ public class Shader {
     private String fragmentSource;
     private String filepath;
 
-
     public Shader(String filepath) {
         this.filepath = filepath;
         try {
@@ -172,6 +171,4 @@ public class Shader {
         use();
         glUniform1iv(varLocation, array);
     }
-
-
 }

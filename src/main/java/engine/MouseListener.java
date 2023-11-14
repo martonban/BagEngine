@@ -8,7 +8,6 @@ import static org.lwjgl.glfw.GLFW.GLFW_PRESS;
 import static org.lwjgl.glfw.GLFW.GLFW_RELEASE;
 
 public class MouseListener {
-
     private static MouseListener instance;
     private double scrollX, scrollY;
     private double xPos, yPos, lastY, lastX;
@@ -29,14 +28,14 @@ public class MouseListener {
     }
 
     // Singelton miatt kell
-    public static MouseListener get(){
+    public static MouseListener get() {
         if(instance == null){
             instance = new MouseListener();
         }
         return instance;
     }
 
-    public static void mousePosCallback(long window, double xpos, double ypos){
+    public static void mousePosCallback(long window, double xpos, double ypos) {
         // Elöző frame végét belerakjuk a lastX, lastY -be
         get().lastX = get().xPos;
         get().lastY = get().yPos;
@@ -46,7 +45,7 @@ public class MouseListener {
         get().isDragging = get().mouseButtonPressed[0] || get().mouseButtonPressed[1] || get().mouseButtonPressed[2];
     }
 
-    public static void mouseButtonCallback (long window, int button, int action, int mods){
+    public static void mouseButtonCallback (long window, int button, int action, int mods) {
         if(action == GLFW_PRESS){
             // Ha több gomb van az egeren
             if(button < get().mouseButtonPressed.length){
@@ -80,7 +79,6 @@ public class MouseListener {
     public static float getY(){
         return (float)get().yPos;
     }
-
 
     public static float getDx(){
         return (float)(get().lastX - get().xPos);

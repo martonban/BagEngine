@@ -15,7 +15,6 @@ import static org.lwjgl.opengl.GL15C.glBufferData;
 import static org.lwjgl.opengl.GL30.*;
 
 public class RenderBatch implements Comparable<RenderBatch>{
-
     private final int POS_SIZE = 2;
     private final int COLOR_SIZE = 4;
     private final int POS_OFFSET = 0;
@@ -83,7 +82,6 @@ public class RenderBatch implements Comparable<RenderBatch>{
 
         glVertexAttribPointer(4, ENTITY_ID_SIZE, GL_FLOAT, false, VERTEX_SIZE_BYTES, ENTITY_ID_OFFSET);
         glEnableVertexAttribArray(4);
-
     }
 
     public void addSprite (SpriteRenderer spr) {
@@ -141,7 +139,6 @@ public class RenderBatch implements Comparable<RenderBatch>{
         for(int i = 0; i < textures.size(); i++) {
             textures.get(i).unbind();
         }
-
         shader.detach();
     }
 
@@ -195,7 +192,6 @@ public class RenderBatch implements Comparable<RenderBatch>{
 
             offset += VERTEX_SIZE;
         }
-
     }
 
     private int[] generateIndices() {

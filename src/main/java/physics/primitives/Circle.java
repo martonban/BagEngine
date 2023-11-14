@@ -14,5 +14,4 @@ public class Circle {
     public Vector2f getCenter() {
         return body.getPosition();
     }
-
 }

@@ -18,14 +18,12 @@ import java.util.List;
 * */
 
 public class GameObject {
-
     private List<Component> components;
     public Transform transform;
     public static int ID_COUNTER = 0;
     public int uid = -1;
     private String name;
     private int zIndex;
-
 
     public GameObject(String name, Transform transform, int zIndex) {
         this.name = name;

@@ -24,7 +24,6 @@ public class PropertiesWindow {
         }
     }
 
-    // TODO:: BUG
     public void update(float dt, Scene currentScene) {
         if(MouseListener.mouseButtonDown(GLFW_MOUSE_BUTTON_LEFT)) {
             int x = (int)MouseListener.getScreenX();

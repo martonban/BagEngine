@@ -16,7 +16,6 @@ import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.system.MemoryUtil.NULL;
 
 public class Window {
-
     // Alap adatok megadása
     private int width, height;
     private String title;
@@ -31,9 +30,7 @@ public class Window {
     private Framebuffer framebuffer;
     private PickingTexture pickingTexture;
 
-
     private static Scene currentScene;
-
 
     // A konstruktor azért private, mert azt szeretnénk, hogy Singelton legyen
     private Window() {
@@ -44,7 +41,6 @@ public class Window {
         g = 1;
         b = 1;
         a = 1;
-
     }
 
     public static void changeScene(int newScene){
@@ -59,7 +55,6 @@ public class Window {
                 assert false : "Unknown scene '" + newScene + "1";
                 break;
         }
-
         currentScene.load();
         currentScene.init();
         currentScene.start();
@@ -153,7 +148,6 @@ public class Window {
 
     }
 
-
     public void loop(){
         float beginTime = (float)glfwGetTime();
         float endTime;
@@ -161,7 +155,6 @@ public class Window {
 
         Shader defaultShader = AssetPool.getShader("assets/shaders/default.glsl");
         Shader pickingShader = AssetPool.getShader("assets/shaders/pickingShader.glsl");
-
 
         while(!glfwWindowShouldClose(glfwWindow)) {
             // Poll Events

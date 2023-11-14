@@ -20,7 +20,6 @@ public class Texture {
     private transient int texID;
     private int width, height;
 
-
     public Texture() {
         texID = -1;
         width = -1;

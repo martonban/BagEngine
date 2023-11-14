@@ -9,7 +9,6 @@ public class Line2D {
     private Vector3f color;
     private int lifeTime;
 
-
     public Line2D(Vector2f from, Vector2f to) {
         this.from = from;
         this.to = to;

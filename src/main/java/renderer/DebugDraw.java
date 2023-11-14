@@ -40,7 +40,6 @@ public class DebugDraw {
 
         glVertexAttribPointer(1, 3, GL_FLOAT, false, 6 * Float.BYTES, 3 * Float.BYTES);
         glEnableVertexAttribArray(1);
-
     }
 
     public static void beginFrame() {
@@ -104,7 +103,6 @@ public class DebugDraw {
         shader.detach();
     }
 
-
     //-----------------------------------------------
     //                  ADD Line2D
     //-----------------------------------------------
@@ -131,7 +129,6 @@ public class DebugDraw {
     public static void addLine2D(Vector2f center, Vector2f dimensions, float rotation, Vector3f color) {
         addBox2D(center, dimensions, rotation, color, 1);
     }
-
 
     public static void addBox2D(Vector2f center, Vector2f dimensions,
                                 float rotation, Vector3f color, int lifeTime) {
@@ -165,7 +162,6 @@ public class DebugDraw {
         addCircle(center, radius, color, 1);
     }
 
-
     public static void addCircle(Vector2f center, float radius, Vector3f color, int lifeTime) {
         Vector2f[] points = new Vector2f[20];
         int increment = 360 / points.length;
@@ -183,6 +179,4 @@ public class DebugDraw {
         }
         addLine2D(points[points.length - 1], points[0], color, lifeTime);
     }
-
-
 }

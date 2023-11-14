@@ -45,7 +45,6 @@ public class Renderer {
             newBatch.addSprite(sprite);
             Collections.sort(batches);
         }
-
     }
 
     public static void bindShader(Shader shader) {
@@ -62,5 +61,4 @@ public class Renderer {
             batch.render();
         }
     }
-
 }

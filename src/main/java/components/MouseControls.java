@@ -7,7 +7,7 @@ import util.Settings;
 
 import static org.lwjgl.glfw.GLFW.GLFW_MOUSE_BUTTON_LEFT;
 
-public class MouseControls extends Component{
+public class MouseControls extends Component {
     GameObject holdingObject = null;
 
     public void pickupObject(GameObject go) {

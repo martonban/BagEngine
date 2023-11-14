@@ -3,7 +3,6 @@ package engine;
 import org.joml.Vector2f;
 
 public class Transform {
-
     public Vector2f position;
     public Vector2f scale;
 
@@ -42,5 +41,4 @@ public class Transform {
         Transform t = (Transform)o;
         return t.position.equals(this.position) && t.scale.equals(this.scale);
     }
-
 }

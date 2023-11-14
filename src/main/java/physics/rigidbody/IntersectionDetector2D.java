@@ -7,7 +7,6 @@ import physics.primitives.Circle;
 import renderer.Line2D;
 import util.JMath;
 
-
 public class IntersectionDetector2D {
 
     public static boolean pointOnLine(Vector2f point, Line2D line) {
@@ -36,7 +35,6 @@ public class IntersectionDetector2D {
         return point.x <= max.x && min.x <= point.x && point.y <= max.y && min.y <= point.y;
     }
 
-
     public static boolean pointInBox2D(Vector2f point, Box2D box) {
         Vector2f pointLocalBoxSpace = new Vector2f(point);
         JMath.rotate(pointLocalBoxSpace, box.getRigidBody().getRotation(), box.getRigidBody().getPosition());
@@ -62,7 +60,6 @@ public class IntersectionDetector2D {
         if(t < 0.0f || t > 1.0f) {
             return false;
         }
-
         // Closet point to line segment
         Vector2f closestPoint = new Vector2f(line.getStart()).add(ab.mul(t));
 
@@ -73,7 +70,6 @@ public class IntersectionDetector2D {
         if(pointInAABB(line.getStart(), box) || pointInAABB(line.getEnd(), box)) {
             return true;
         }
-
         Vector2f unitVector = new Vector2f(line.getEnd()).sub(line.getStart());
         unitVector.normalize();
         unitVector.x = (unitVector.x != 0) ? 1.0f / unitVector.x : 0;
@@ -89,7 +85,6 @@ public class IntersectionDetector2D {
         if(tmax < 0 || tmin > tmax) {
             return false;
         }
-
         float t = (tmin < 0f) ? tmax : tmin;
         return t > 0f && t * t < line.lengthSquared();
     }

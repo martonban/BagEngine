@@ -3,7 +3,6 @@ package renderer;
 import static org.lwjgl.opengl.GL30.*;
 
 public class Framebuffer {
-
     private int fboID = 0;
     private Texture texture = null;
 

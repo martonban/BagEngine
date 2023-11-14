@@ -31,20 +31,15 @@ import java.util.Optional;
 * */
 
 public abstract class Scene {
-
     protected Renderer renderer = new Renderer();
     protected Camera camera;
     protected List <GameObject> gameObjects = new ArrayList<>();
     private boolean isRunning = false;
     protected boolean levelLoaded = false;
 
-    public Scene() {
+    public Scene() {}
 
-    }
-
-    public void init(){
-
-    }
+    public void init(){}
 
     // Go throw every game object and start it. After that, we pass the instance to the renderer.
     public void start () {
@@ -134,7 +129,6 @@ public abstract class Scene {
                     maxGoId = objs[i].getUid();
                 }
             }
-
             maxGoId++;
             maxCompId++;
             GameObject.init(maxGoId);

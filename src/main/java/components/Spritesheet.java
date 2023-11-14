@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Spritesheet {
-
     private Texture texture;
     private List<Sprite> sprites;
 
@@ -52,5 +51,4 @@ public class Spritesheet {
     public int size() {
         return sprites.size();
     }
-
 }

@@ -21,6 +21,4 @@ public class LevelScene extends Scene {
     public void render() {
 
     }
-
-
 }
