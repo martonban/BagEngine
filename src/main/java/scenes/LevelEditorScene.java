@@ -15,15 +15,12 @@ import util.AssetPool;
 import util.Settings;
 
 public class LevelEditorScene extends Scene {
-
     private Spritesheet sprites;
 
     // This game object is responsible for the DebugGrid and the SnapToGrid
     GameObject developerToolGameObject = new GameObject("Level Editor", new Transform(new Vector2f()), 0);
 
-    public LevelEditorScene() {
-
-    }
+    public LevelEditorScene() {}
 
     @Override
     public void init() {
@@ -35,7 +32,6 @@ public class LevelEditorScene extends Scene {
 
         sprites = AssetPool.getSpritesheet("assets/spritesheets/decorationsAndBlocks.png");
     }
-
 
     private void loadResources() {
         AssetPool.getShader("assets/shaders/default.glsl");
@@ -53,12 +49,8 @@ public class LevelEditorScene extends Scene {
                 }
             }
         }
-
     }
 
-
-    float x = 0;
-    float y = 0;
     @Override
     public void update(float dt) {
         developerToolGameObject.update(dt);
@@ -83,6 +75,7 @@ public class LevelEditorScene extends Scene {
         ImVec2 itemSpacing = new ImVec2();
         ImGui.getStyle().getItemSpacing(itemSpacing);
 
+        // TODO:: Placement Bug: If you click outside of the GameViewWindow the tile is getting placed
         float windowsX2 = windowPos.x + windowSize.x;
         for (int i = 0; i < sprites.size(); i++) {
             Sprite sprite = sprites.getSprite(i);
@@ -95,7 +88,6 @@ public class LevelEditorScene extends Scene {
             if(ImGui.imageButton(id, spriteWidth, spriteHeight, texCoords[2].x, texCoords[0].y, texCoords[0].x, texCoords[2].y)){
                 GameObject object = Prefabs.generateSpriteObject(sprite, 32, 32);
                 developerToolGameObject.getComponent(MouseControls.class).pickupObject(object);
-
             }
             ImGui.popID();
 
@@ -108,9 +100,6 @@ public class LevelEditorScene extends Scene {
                  ImGui.sameLine();
             }
         }
-
         ImGui.end();
     }
-
-
 }

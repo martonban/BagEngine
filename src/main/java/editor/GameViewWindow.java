@@ -10,7 +10,6 @@ import org.joml.Vector2f;
 // TODO: getWantCaptureMouse() is sussy
 
 public class GameViewWindow {
-
     private float leftX, rightX, topY, bottomY;
 
     public void imgui() {
@@ -28,7 +27,7 @@ public class GameViewWindow {
         leftX = topLeft.x;
         bottomY = topLeft.y;
         rightX = topLeft.x + windowSize.x;
-        topY = topLeft.y - windowSize.y;
+        topY = topLeft.y + windowSize.y;
 
         int textureID = Window.getFrameBuffer().getTextureID();
         ImGui.image(textureID, windowSize.x, windowSize.y, 0, 1, 1, 0);
