@@ -180,8 +180,8 @@ public class Window {
             pickingTexture.disableWriting();
             glEnable(GL_BLEND);
 
-            // This part is the responsible for the PickingTexture functionality
-            // Not the game it's just the Debugger
+            // This part is the responsible for the regular rendering
+            // Not the game it's just the LineRenderer
             DebugDraw.beginFrame();
 
             // Render the game

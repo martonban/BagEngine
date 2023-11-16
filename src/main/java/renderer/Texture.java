@@ -10,26 +10,30 @@ import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.stb.STBImage.*;
 
 /*
-* This has two purpose  1) it is a data class for store Textures data
-*                       2) We upload 2D images to the GPU.
+*   This class is generally responsible for store the "meta-data" of a texture and prepare the GPU.
+*   Currently, we have to type of textures.
+*   One for the regular renderer and one for the Framebuffer.
+*   We're preparing the data to the GPU is different in the case of the framebuffer or the regular Texture.
 */
 
 public class Texture {
-
     private String filePath;
     private transient int texID;
     private int width, height;
 
+    // An Empty constructor. It'll get data later.
     public Texture() {
         texID = -1;
         width = -1;
         height = -1;
     }
 
-    public void init(String filePath) {
+    // Classic Texture
+    // It'll upload the image at this file path
+    public void init (String filePath) {
         this.filePath = filePath;
 
-        // Texture 0
+        // Texture
         texID = glGenTextures();
         glBindTexture(GL_TEXTURE_2D, texID);
 
@@ -64,6 +68,7 @@ public class Texture {
     }
 
     // Texture for framebuffer
+    //
     public Texture (int width, int height) {
         this.filePath = "Generated";
 
@@ -85,6 +90,7 @@ public class Texture {
         glBindTexture(GL_TEXTURE, 0);
     }
 
+    // GETTERS
     public int getWidth() {
         return width;
     }
@@ -101,6 +107,7 @@ public class Texture {
         return this.filePath;
     }
 
+    // EQUALS FUNCTION
     @Override
     public boolean equals(Object o) {
         if (o == null) return false;

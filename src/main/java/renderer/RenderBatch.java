@@ -215,6 +215,7 @@ public class RenderBatch implements Comparable<RenderBatch>{
         elements[offsetArrayIndex + 5] = offset + 1;
     }
 
+    // GETTERS
     public boolean hasRoom() {
         return this.hasRoom;
     }
@@ -231,6 +232,7 @@ public class RenderBatch implements Comparable<RenderBatch>{
         return this.zIndex;
     }
 
+    // COMPER TO FUNCTIONS
     @Override
     public int compareTo(RenderBatch o) {
         return Integer.compare(this.zIndex, o.zIndex());

@@ -14,21 +14,30 @@ import renderer.DebugDraw;
 import util.AssetPool;
 import util.Settings;
 
+/*
+*   In the current state of the engine, this is the only Scene what we're using.
+*   Right now we don't have a separate editor and core, so this is THE ENGINE!!!!
+*/
+
 public class LevelEditorScene extends Scene {
     private Spritesheet sprites;
 
     // This game object is responsible for the DebugGrid and the SnapToGrid
     GameObject developerToolGameObject = new GameObject("Level Editor", new Transform(new Vector2f()), 0);
 
+
     public LevelEditorScene() {}
 
+    // Before
     @Override
     public void init() {
+        this.camera = new Camera(new Vector2f());
+
         developerToolGameObject.addComponent(new MouseControls());
         developerToolGameObject.addComponent(new GridLines());
+        developerToolGameObject.addComponent(new EditorCamera(camera));
 
         loadResources();
-        this.camera = new Camera(new Vector2f());
 
         sprites = AssetPool.getSpritesheet("assets/spritesheets/decorationsAndBlocks.png");
     }
@@ -41,6 +50,10 @@ public class LevelEditorScene extends Scene {
                         16, 16, 82, 0));
         AssetPool.getTexture("assets/textures/blendImage2.png");
 
+
+        /*
+        * We changed how
+        */
         for (GameObject g : gameObjects) {
             if(g.getComponent(SpriteRenderer.class) != null) {
                 SpriteRenderer spr = g.getComponent(SpriteRenderer.class);
