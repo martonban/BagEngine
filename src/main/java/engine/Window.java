@@ -200,6 +200,9 @@ public class Window {
             this.imGuiLayer.update(dt, currentScene);
             glfwSwapBuffers(glfwWindow);
 
+            // We have to do this for the EditorCamera because we call adjustProjection function in the scene. To do this, we have to call the endFrame function because we need to reset everything
+            MouseListener.endFrame();
+
             // Calculate delta time
             endTime = (float)glfwGetTime();
             dt = endTime - beginTime;

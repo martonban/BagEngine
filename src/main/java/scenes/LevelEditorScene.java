@@ -67,6 +67,7 @@ public class LevelEditorScene extends Scene {
     @Override
     public void update(float dt) {
         developerToolGameObject.update(dt);
+        this.camera.adjustProjection();
 
         for (GameObject go : this.gameObjects) {
             go.update(dt);
