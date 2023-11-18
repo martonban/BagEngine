@@ -39,6 +39,7 @@ public class LevelEditorScene extends Scene {
         developerToolGameObject.addComponent(new EditorCamera(camera));
         developerToolGameObject.addComponent(new TranslateGizmo(gizmos.getSprite(1),
                 Window.getImGuiLayer().getPropertiesWindow()));
+        developerToolGameObject.start();
     }
 
     private void loadResources() {

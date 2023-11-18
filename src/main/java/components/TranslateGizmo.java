@@ -4,6 +4,7 @@ import editor.PropertiesWindow;
 import engine.GameObject;
 import engine.Prefabs;
 import engine.Window;
+import org.joml.Vector2f;
 import org.joml.Vector4f;
 
 // TODO:: BETTER TO SOLVE IT WITH SHADERS
@@ -19,6 +20,10 @@ public class TranslateGizmo extends Component{
     private SpriteRenderer yAxisSprite;
 
     private GameObject activeGameObject = null;
+
+    private Vector2f xAxisOffset = new Vector2f(80.0f, 6.0f);
+    private Vector2f yAxisOffset = new Vector2f(21.0f, 80.0f);
+
     private PropertiesWindow propertiesWindow;
 
     public TranslateGizmo (Sprite arrowSprite, PropertiesWindow propertiesWindow) {
@@ -34,7 +39,10 @@ public class TranslateGizmo extends Component{
 
     @Override
     public void start() {
-
+        this.xAxisObject.transform.rotation = 90;
+        this.yAxisObject.transform.rotation = 180;
+        this.xAxisObject.setNoSerialize();
+        this.yAxisObject.setNoSerialize();
     }
 
     @Override
@@ -42,6 +50,8 @@ public class TranslateGizmo extends Component{
         if(this.activeGameObject != null) {
             this.xAxisObject.transform.position.set(this.activeGameObject.transform.position);
             this.yAxisObject.transform.position.set(this.activeGameObject.transform.position);
+            this.xAxisObject.transform.position.add(xAxisOffset);
+            this.yAxisObject.transform.position.add(yAxisOffset);
         }
         this.activeGameObject = this.propertiesWindow.getActiveGameObject();
         if(this.activeGameObject != null) {

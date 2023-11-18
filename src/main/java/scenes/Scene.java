@@ -88,7 +88,14 @@ public abstract class Scene {
         // Then we will go through all the GameObjects and write into the file
         try {
             FileWriter writer = new FileWriter("level.json");
-            writer.write(gson.toJson(this.gameObjects));
+            // We need to separate game objects based on they want to get serialized or not. For example, gizmos don't want to do that
+            List<GameObject> objsToSerialize = new ArrayList<>();
+            for(GameObject obj : this.gameObjects) {
+                if(obj.getIsItDoSerialization()) {
+                    objsToSerialize.add(obj);
+                }
+            }
+            writer.write(gson.toJson(objsToSerialize));
             writer.close();
         } catch(IOException e) {
             e.printStackTrace();

@@ -24,6 +24,7 @@ public class GameObject {
     public int uid = -1;
     private String name;
     private int zIndex;
+    private boolean doSerialization = true;
 
     public GameObject(String name, Transform transform, int zIndex) {
         this.name = name;
@@ -88,6 +89,14 @@ public class GameObject {
 
     public static void init(int maxID) {
         ID_COUNTER = maxID;
+    }
+
+    public void setNoSerialize() {
+        this.doSerialization = false;
+    }
+
+    public boolean getIsItDoSerialization() {
+        return this.doSerialization;
     }
 
     public int getUid() {
