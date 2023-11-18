@@ -2,10 +2,7 @@ package scenes;
 
 
 import components.*;
-import engine.Camera;
-import engine.GameObject;
-import engine.Prefabs;
-import engine.Transform;
+import engine.*;
 import imgui.ImGui;
 import imgui.ImVec2;
 import org.joml.Vector2f;
@@ -31,15 +28,17 @@ public class LevelEditorScene extends Scene {
     // Before
     @Override
     public void init() {
+        loadResources();
+        sprites = AssetPool.getSpritesheet("assets/spritesheets/decorationsAndBlocks.png");
+        Spritesheet gizmos = AssetPool.getSpritesheet("assets/spritesheets/gizmos.png");
+
         this.camera = new Camera(new Vector2f());
 
         developerToolGameObject.addComponent(new MouseControls());
         developerToolGameObject.addComponent(new GridLines());
         developerToolGameObject.addComponent(new EditorCamera(camera));
-
-        loadResources();
-
-        sprites = AssetPool.getSpritesheet("assets/spritesheets/decorationsAndBlocks.png");
+        developerToolGameObject.addComponent(new TranslateGizmo(gizmos.getSprite(1),
+                Window.getImGuiLayer().getPropertiesWindow()));
     }
 
     private void loadResources() {
@@ -48,6 +47,9 @@ public class LevelEditorScene extends Scene {
         AssetPool.addSpritesheet("assets/spritesheets/decorationsAndBlocks.png",
                 new Spritesheet(AssetPool.getTexture("assets/spritesheets/decorationsAndBlocks.png"),
                         16, 16, 82, 0));
+        AssetPool.addSpritesheet("assets/spritesheets/gizmos.png",
+                new Spritesheet(AssetPool.getTexture("assets/spritesheets/gizmos.png"),
+                        24, 48, 3, 0));
         AssetPool.getTexture("assets/textures/blendImage2.png");
 
 
@@ -81,6 +83,10 @@ public class LevelEditorScene extends Scene {
 
     @Override
     public void imgui() {
+        ImGui.begin("Level Editor Stuff");
+        developerToolGameObject.imgui();
+        ImGui.end();
+
         ImGui.begin("Test Window");
         ImVec2 windowPos = new ImVec2();
         ImGui.getWindowPos(windowPos);
