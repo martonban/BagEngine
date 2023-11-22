@@ -31,6 +31,8 @@ public class Gizmo extends Component{
     private int gizmoWidth = 16;
     private int gizmoHeight = 48;
 
+    private boolean using = false;
+
     private PropertiesWindow propertiesWindow;
 
     public Gizmo (Sprite arrowSprite, PropertiesWindow propertiesWindow) {
@@ -57,6 +59,10 @@ public class Gizmo extends Component{
 
     @Override
     public void update(float dt) {
+        if(!using) {
+            return;
+        }
+
         this.activeGameObject = this.propertiesWindow.getActiveGameObject();
         if(this.activeGameObject != null) {
             this.setActive();
@@ -122,5 +128,14 @@ public class Gizmo extends Component{
         }
         yAxisSprite.setColor(yAxisColor);
         return false;
+    }
+
+    public void setUsing() {
+        this.using = true;
+    }
+
+    public void setNotUsing() {
+        this.using = false;
+        this.setInactive();
     }
 }

@@ -37,8 +37,7 @@ public class LevelEditorScene extends Scene {
         developerToolGameObject.addComponent(new MouseControls());
         developerToolGameObject.addComponent(new GridLines());
         developerToolGameObject.addComponent(new EditorCamera(camera));
-        developerToolGameObject.addComponent(new TranslateGizmo(gizmos.getSprite(1),
-                Window.getImGuiLayer().getPropertiesWindow()));
+        developerToolGameObject.addComponent(new GizmoSystem(gizmos));
         developerToolGameObject.start();
     }
 

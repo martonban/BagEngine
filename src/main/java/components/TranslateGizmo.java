@@ -6,7 +6,6 @@ import engine.MouseListener;
 
 public class TranslateGizmo extends Gizmo{
 
-
     public TranslateGizmo (Sprite arrowSprite, PropertiesWindow propertiesWindow) {
         super(arrowSprite, propertiesWindow);
     }
