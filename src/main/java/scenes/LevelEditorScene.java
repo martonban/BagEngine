@@ -6,8 +6,6 @@ import engine.*;
 import imgui.ImGui;
 import imgui.ImVec2;
 import org.joml.Vector2f;
-import org.joml.Vector3f;
-import renderer.DebugDraw;
 import util.AssetPool;
 import util.Settings;
 
@@ -20,7 +18,7 @@ public class LevelEditorScene extends Scene {
     private Spritesheet sprites;
 
     // This game object is responsible for the DebugGrid and the SnapToGrid
-    GameObject developerToolGameObject = new GameObject("Level Editor", new Transform(new Vector2f()), 0);
+    GameObject developerToolGameObject = this.createGameObject("Level Editor");
 
 
     public LevelEditorScene() {}

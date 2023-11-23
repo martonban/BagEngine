@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import components.Component;
 import components.ComponentDeserializer;
+import components.Transform;
 import engine.Camera;
 import engine.GameObject;
 import engine.GameObjectDeserializer;
@@ -71,6 +72,15 @@ public abstract class Scene {
 
     public void imgui() {
 
+    }
+
+    // When we want to create a game object and this will return a game object
+    // It helps us to maintain a cleaner code
+    public GameObject createGameObject(String name) {
+        GameObject go = new GameObject(name);
+        go.addComponent(new Transform());
+        go.transform = go.getComponent(Transform.class);
+        return go;
     }
 
     // This part is responsible when we stop the engine, everything is gonna saved by the Serializer.

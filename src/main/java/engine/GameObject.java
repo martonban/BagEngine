@@ -1,6 +1,7 @@
 package engine;
 
 import components.Component;
+import components.Transform;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,18 +20,15 @@ import java.util.List;
 
 public class GameObject {
     private List<Component> components;
-    public Transform transform;
+    public transient Transform transform;
     public static int ID_COUNTER = 0;
     public int uid = -1;
     private String name;
-    private int zIndex;
     private boolean doSerialization = true;
 
-    public GameObject(String name, Transform transform, int zIndex) {
+    public GameObject(String name) {
         this.name = name;
-        this.zIndex = zIndex;
         this.components = new ArrayList<>();
-        this.transform = transform;
 
         this.uid = ID_COUNTER++;
     }
@@ -81,10 +79,6 @@ public class GameObject {
         for (Component c: components) {
             c.imgui();
         }
-    }
-
-    public int zIndex() {
-        return zIndex;
     }
 
     public static void init(int maxID) {
