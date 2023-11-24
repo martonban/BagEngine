@@ -67,15 +67,15 @@
         "type": "components.Transform",
         "properties": {
           "position": {
-            "x": 693.4085,
-            "y": 366.37747
+            "x": 486.76056,
+            "y": 220.52959
           },
           "scale": {
             "x": 32.0,
             "y": 32.0
           },
-          "rotation": 0.0,
-          "zIndex": 0,
+          "rotation": -35.0,
+          "zIndex": -59,
           "uid": 20
         }
       },
@@ -84,8 +84,8 @@
         "properties": {
           "color": {
             "x": 1.0,
-            "y": 1.0,
-            "z": 1.0,
+            "y": 0.99999,
+            "z": 0.99999,
             "w": 1.0
           },
           "sprite": {
@@ -129,14 +129,14 @@
         "type": "components.Transform",
         "properties": {
           "position": {
-            "x": 864.0,
-            "y": 352.0
+            "x": 666.741,
+            "y": 322.8
           },
           "scale": {
-            "x": 32.0,
-            "y": 32.0
+            "x": 48.8,
+            "y": 33.5
           },
-          "rotation": 0.0,
+          "rotation": -32.1,
           "zIndex": 0,
           "uid": 40
         }
@@ -145,9 +145,9 @@
         "type": "components.SpriteRenderer",
         "properties": {
           "color": {
-            "x": 0.9359603,
-            "y": 0.0,
-            "z": 1.0,
+            "x": 0.253391,
+            "y": 0.8683274,
+            "z": 0.0,
             "w": 1.0
           },
           "sprite": {
@@ -315,14 +315,14 @@
         "type": "components.Transform",
         "properties": {
           "position": {
-            "x": 247.77466,
-            "y": 172.30415
+            "x": 0.0,
+            "y": 197.5547
           },
           "scale": {
-            "x": 173.9718,
-            "y": 166.4
+            "x": 160.972,
+            "y": 138.4
           },
-          "rotation": 0.0,
+          "rotation": 404.0,
           "zIndex": 0,
           "uid": 64
         }
@@ -367,7 +367,7 @@
         }
       }
     ],
-    "uid": 10,
+    "uid": 6,
     "name": "Sprite_Object_Gen",
     "doSerialization": true
   }

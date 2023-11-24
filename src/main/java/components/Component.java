@@ -1,5 +1,6 @@
 package components;
 
+import editor.BagImGui;
 import engine.GameObject;
 import imgui.ImGui;
 import org.joml.Vector2f;
@@ -57,16 +58,10 @@ public abstract class Component {
                 // Go threw all possible data type, BASED ON OUR CODE!!!
                 if(type == int.class) {
                     int val = (int)value;
-                    int[] imInt = {val};
-                    if (ImGui.dragInt(name + ": ", imInt)) {
-                       field.set(this, imInt[0]);
-                    }
+                    field.set(this, BagImGui.dragInt(name, val));
                 } else if (type == float.class) {
                     float val = (float)value;
-                    float[] imFloat = {val};
-                    if(ImGui.dragFloat(name + ": ", imFloat)){
-                        field.set(this, imFloat[0]);
-                    }
+                    field.set(this, BagImGui.dragFloat(name, val));
                 } else if (type == boolean.class) {
                     boolean val = (boolean)value;
                     boolean[] imBool = {val};
@@ -76,10 +71,7 @@ public abstract class Component {
                     }
                 } else if (type == Vector2f.class) {
                     Vector2f val = (Vector2f) value;
-                    float[] imVec = {val.x, val.y};
-                    if(ImGui.dragFloat2(name + ": ", imVec)){
-                        val.set(imVec[0], imVec[1]);
-                    }
+                    BagImGui.drawVec2Control(name, val);
                 } else if (type == Vector3f.class) {
                     Vector3f val = (Vector3f) value;
                     float[] imVec = {val.x, val.y, val.z};

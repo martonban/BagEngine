@@ -81,10 +81,6 @@ public class LevelEditorScene extends Scene {
 
     @Override
     public void imgui() {
-        ImGui.begin("Level Editor Stuff");
-        developerToolGameObject.imgui();
-        ImGui.end();
-
         ImGui.begin("Test Window");
         ImVec2 windowPos = new ImVec2();
         ImGui.getWindowPos(windowPos);

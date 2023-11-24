@@ -1,5 +1,6 @@
 package components;
 
+import editor.BagImGui;
 import org.joml.Vector2f;
 
 public class Transform extends Component {
@@ -29,6 +30,14 @@ public class Transform extends Component {
 
     public Transform copy() {
         return new Transform(new Vector2f(this.position), new Vector2f(this.scale));
+    }
+
+    @Override
+    public void imgui() {
+        BagImGui.drawVec2Control("Position", this.position);
+        BagImGui.drawVec2Control("Scale", this.scale, 32.0f);
+        this.rotation = BagImGui.dragFloat("Rotation", this.rotation);
+        this.zIndex = BagImGui.dragInt("Z-Index", this.zIndex);
     }
 
     public void copy(Transform to) {
