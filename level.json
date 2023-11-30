@@ -129,14 +129,14 @@
         "type": "components.Transform",
         "properties": {
           "position": {
-            "x": 666.741,
-            "y": 322.8
+            "x": 609.4647,
+            "y": 245.1272
           },
           "scale": {
-            "x": 48.8,
-            "y": 33.5
+            "x": 45.333755,
+            "y": 30.804108
           },
-          "rotation": -32.1,
+          "rotation": -30.0,
           "zIndex": 0,
           "uid": 40
         }
@@ -315,7 +315,7 @@
         "type": "components.Transform",
         "properties": {
           "position": {
-            "x": 0.0,
+            "x": 170.36615,
             "y": 197.5547
           },
           "scale": {

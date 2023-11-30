@@ -2,20 +2,20 @@ package physics.primitives;
 
 
 import org.joml.Vector2f;
-import physics.rigidbody.RigidBody2D;
+import physics.rigidbody.BagRigidBody2D;
 
-public class AABB {
+public class BagAABB {
     private Vector2f size = new Vector2f();
     private Vector2f halfSize = new Vector2f();
-    private RigidBody2D rigidBody = null;
+    private BagRigidBody2D rigidBody = null;
 
-    public AABB() {
+    public BagAABB() {
         this.halfSize = new Vector2f(size).div(2);
     }
 
     // Min = Botton Left Corner
     // Max = Top Right Corner
-    public AABB(Vector2f min, Vector2f max) {
+    public BagAABB(Vector2f min, Vector2f max) {
         this.size = new Vector2f(max).sub(min);
         this.halfSize = new Vector2f(size).div(2);
     }

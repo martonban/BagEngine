@@ -3,7 +3,7 @@ package physics.rigidbody;
 import components.Component;
 import org.joml.Vector2f;
 
-public class RigidBody2D extends Component {
+public class BagRigidBody2D extends Component {
     private Vector2f position =  new Vector2f();
     private float rotation = 0.0f;
 

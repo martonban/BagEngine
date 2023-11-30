@@ -1,11 +1,11 @@
 package physics.primitives;
 
 import org.joml.Vector2f;
-import physics.rigidbody.RigidBody2D;
+import physics.rigidbody.BagRigidBody2D;
 
-public class Circle {
+public class BagCircle {
     private float radius = 1.0f;
-    private RigidBody2D body = null;
+    private BagRigidBody2D body = null;
 
     public float getRadius() {
         return radius;

@@ -1,13 +1,13 @@
 package physics.rigidbody;
 
 import org.joml.Vector2f;
-import physics.primitives.AABB;
-import physics.primitives.Box2D;
-import physics.primitives.Circle;
+import physics.primitives.BagAABB;
+import physics.primitives.BagBox2D;
+import physics.primitives.BagCircle;
 import renderer.Line2D;
 import util.JMath;
 
-public class IntersectionDetector2D {
+public class BagIntersectionDetector2D {
 
     public static boolean pointOnLine(Vector2f point, Line2D line) {
         float dx = line.getEnd().x - line.getStart().x;
@@ -21,21 +21,21 @@ public class IntersectionDetector2D {
         return point.y == m * point.x + b;
     }
 
-    public static boolean pointInCircle(Vector2f point, Circle circle) {
+    public static boolean pointInCircle(Vector2f point, BagCircle circle) {
         Vector2f circleCenter = circle.getCenter();
         Vector2f centerToPoint = new Vector2f(point).sub(circleCenter);
 
         return centerToPoint.lengthSquared() < circle.getRadius() * circle.getRadius();
     }
 
-    public static boolean pointInAABB (Vector2f point, AABB box) {
+    public static boolean pointInAABB (Vector2f point, BagAABB box) {
         Vector2f min = box.getMin();
         Vector2f max = box.getMax();
 
         return point.x <= max.x && min.x <= point.x && point.y <= max.y && min.y <= point.y;
     }
 
-    public static boolean pointInBox2D(Vector2f point, Box2D box) {
+    public static boolean pointInBox2D(Vector2f point, BagBox2D box) {
         Vector2f pointLocalBoxSpace = new Vector2f(point);
         JMath.rotate(pointLocalBoxSpace, box.getRigidBody().getRotation(), box.getRigidBody().getPosition());
 
@@ -46,7 +46,7 @@ public class IntersectionDetector2D {
                 pointLocalBoxSpace.y <= max.y && min.y <= pointLocalBoxSpace.y;
     }
 
-    public static boolean lineAndCircle(Line2D line, Circle circle) {
+    public static boolean lineAndCircle(Line2D line, BagCircle circle) {
         if (pointInCircle(line.getStart(), circle) || pointInCircle(line.getEnd(), circle)) {
             return true;
         }
@@ -66,7 +66,7 @@ public class IntersectionDetector2D {
         return pointInCircle(closestPoint, circle);
     }
 
-    public static boolean lineAndAABB(Line2D line, AABB box) {
+    public static boolean lineAndAABB(Line2D line, BagAABB box) {
         if(pointInAABB(line.getStart(), box) || pointInAABB(line.getEnd(), box)) {
             return true;
         }
@@ -89,7 +89,7 @@ public class IntersectionDetector2D {
         return t > 0f && t * t < line.lengthSquared();
     }
 
-    public static boolean lineAndBox2D(Line2D line, Box2D box) {
+    public static boolean lineAndBox2D(Line2D line, BagBox2D box) {
         float theta = box.getRigidBody().getRotation();
         Vector2f center = box.getRigidBody().getPosition();
         Vector2f localStart = new Vector2f(line.getStart());
@@ -98,7 +98,7 @@ public class IntersectionDetector2D {
         JMath.rotate(localEnd, theta, center);
 
         Line2D localLine = new Line2D(localStart, localEnd);
-        AABB aabb = new AABB(box.getMin(), box.getMax());
+        BagAABB aabb = new BagAABB(box.getMin(), box.getMax());
 
         return lineAndAABB(localLine, aabb);
     }

@@ -1,19 +1,18 @@
 package physics.primitives;
 
 import org.joml.Vector2f;
-import physics.rigidbody.RigidBody2D;
-import util.JMath;
+import physics.rigidbody.BagRigidBody2D;
 
-public class Box2D {
+public class BagBox2D {
     private Vector2f size = new Vector2f();
     private Vector2f halfSize = new Vector2f();
-    private RigidBody2D rigidBody = null;
+    private BagRigidBody2D rigidBody = null;
 
-    public Box2D() {
+    public BagBox2D() {
         this.halfSize = new Vector2f(size).div(2);
     }
 
-    public Box2D(Vector2f min, Vector2f max) {
+    public BagBox2D(Vector2f min, Vector2f max) {
         this.size = new Vector2f(max).sub(min);
         this.halfSize = new Vector2f(size).div(2);
     }
@@ -44,7 +43,7 @@ public class Box2D {
         return vertices;
     }
 
-    public RigidBody2D getRigidBody () {
+    public BagRigidBody2D getRigidBody () {
         return this.rigidBody;
     }
 }
