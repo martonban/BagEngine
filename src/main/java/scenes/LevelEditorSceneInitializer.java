@@ -14,32 +14,31 @@ import util.Settings;
 *   Right now we don't have a separate editor and core, so this is THE ENGINE!!!!
 */
 
-public class LevelEditorScene extends Scene {
+public class LevelEditorSceneInitializer extends SceneInitializer {
     private Spritesheet sprites;
-
     // This game object is responsible for the DebugGrid and the SnapToGrid
-    GameObject developerToolGameObject = this.createGameObject("Level Editor");
+    private GameObject developerToolGameObject;
 
 
-    public LevelEditorScene() {}
+    public LevelEditorSceneInitializer() {}
 
     // Before
     @Override
-    public void init() {
-        loadResources();
+    public void init(Scene scene) {
         sprites = AssetPool.getSpritesheet("assets/spritesheets/decorationsAndBlocks.png");
         Spritesheet gizmos = AssetPool.getSpritesheet("assets/spritesheets/gizmos.png");
 
-        this.camera = new Camera(new Vector2f());
-
+        developerToolGameObject = scene.createGameObject("Level Editor");
+        developerToolGameObject.setNoSerialize();
         developerToolGameObject.addComponent(new MouseControls());
         developerToolGameObject.addComponent(new GridLines());
-        developerToolGameObject.addComponent(new EditorCamera(camera));
+        developerToolGameObject.addComponent(new EditorCamera(scene.camera()));
         developerToolGameObject.addComponent(new GizmoSystem(gizmos));
-        developerToolGameObject.start();
+        scene.addGameObjectToScene(developerToolGameObject);
     }
 
-    private void loadResources() {
+    @Override
+    public void loadResources(Scene scene) {
         AssetPool.getShader("assets/shaders/default.glsl");
 
         AssetPool.addSpritesheet("assets/spritesheets/decorationsAndBlocks.png",
@@ -54,7 +53,7 @@ public class LevelEditorScene extends Scene {
         /*
         * We changed how
         */
-        for (GameObject g : gameObjects) {
+        for (GameObject g : scene.getGameObjects()) {
             if(g.getComponent(SpriteRenderer.class) != null) {
                 SpriteRenderer spr = g.getComponent(SpriteRenderer.class);
                 if (spr.getTexture() != null) {
@@ -62,21 +61,6 @@ public class LevelEditorScene extends Scene {
                 }
             }
         }
-    }
-
-    @Override
-    public void update(float dt) {
-        developerToolGameObject.update(dt);
-        this.camera.adjustProjection();
-
-        for (GameObject go : this.gameObjects) {
-            go.update(dt);
-        }
-    }
-
-    @Override
-    public void render(){
-        this.renderer.render();
     }
 
     @Override

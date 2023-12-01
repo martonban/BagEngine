@@ -9,6 +9,7 @@ import engine.Camera;
 import engine.GameObject;
 import engine.GameObjectDeserializer;
 import imgui.ImGui;
+import org.joml.Vector2f;
 import renderer.Renderer;
 
 import java.io.FileWriter;
@@ -31,20 +32,29 @@ import java.util.Optional;
 *       - levelLoaded: This engine is support serialization. That data is annotated when the engine is ready to run (loaded every data from serializer)
 * */
 
-public abstract class Scene {
-    protected Renderer renderer = new Renderer();
-    protected Camera camera;
-    protected List <GameObject> gameObjects = new ArrayList<>();
+public class Scene {
+    private Renderer renderer = new Renderer();
+    private Camera camera;
+    private List <GameObject> gameObjects = new ArrayList<>();
     private boolean isRunning = false;
-    protected boolean levelLoaded = false;
+    private boolean levelLoaded = false;
 
-    public Scene() {}
+    private SceneInitializer sceneInitializer;
 
-    public void init(){}
+    public Scene(SceneInitializer sceneInitializer) {
+        this.sceneInitializer = sceneInitializer;
+    }
+
+    public void init() {
+        this.camera = new Camera(new Vector2f());
+        this.sceneInitializer.loadResources(this);
+        this.sceneInitializer.init(this);
+    }
 
     // Go throw every game object and start it. After that, we pass the instance to the renderer.
     public void start () {
-        for (GameObject go : gameObjects) {
+        for (int i = 0; i < gameObjects.size(); i++) {
+            GameObject go = gameObjects.get(i);
             go.start();
             this.renderer.add(go);
         }
@@ -63,15 +73,24 @@ public abstract class Scene {
         }
     }
 
-    public abstract void update(float dt);
-    public abstract void render();
+    public void update(float dt) {
+        this.camera.adjustProjection();
+
+        for (GameObject go : this.gameObjects) {
+            go.update(dt);
+        }
+    }
+
+    public void render() {
+        this.renderer.render();
+    }
 
     public Camera camera() {
         return this.camera;
     }
 
     public void imgui() {
-
+        this.sceneInitializer.imgui();
     }
 
     // When we want to create a game object and this will return a game object
@@ -152,6 +171,10 @@ public abstract class Scene {
             Component.init(maxCompId);
             this.levelLoaded = true;
         }
+    }
+
+    public List<GameObject> getGameObjects() {
+        return this.gameObjects;
     }
 
     public GameObject getGameObject(int gameObjectID) {

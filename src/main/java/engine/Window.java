@@ -1,12 +1,16 @@
 package engine;
 
+import observers.EventSystem;
+import observers.Observer;
+import observers.events.Event;
+import observers.events.EventType;
 import org.lwjgl.Version;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.opengl.GL;
 import renderer.*;
-import scenes.LevelEditorScene;
-import scenes.LevelScene;
+import scenes.LevelEditorSceneInitializer;
 import scenes.Scene;
+import scenes.SceneInitializer;
 import util.AssetPool;
 
 
@@ -15,11 +19,10 @@ import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.system.MemoryUtil.NULL;
 
-public class Window {
+public class Window implements Observer {
     private int width, height;
     private String title;
-    public float r, g, b, a;
-    private boolean fadeToBalck = false;
+
 
     private static Window window = null;
 
@@ -37,25 +40,16 @@ public class Window {
         this.width = 1920;
         this.height = 1080;
         this.title = "Bag Engine - Editor";
-        r = 1;
-        g = 1;
-        b = 1;
-        a = 1;
+        EventSystem.abbObserver(this);
     }
 
     // "Scene Manager": we can set the scene which one we need and load/init/start/ is
-    public static void changeScene(int newScene){
-        switch (newScene) {
-            case 0:
-                currentScene = new LevelEditorScene();
-                break;
-            case 1:
-                currentScene = new LevelScene();
-                break;
-            default:
-                assert false : "Unknown scene '" + newScene + "1";
-                break;
+    public static void changeScene(SceneInitializer sceneInitializer){
+        if(currentScene != null) {
+            // destroy it
         }
+
+        currentScene = new Scene(sceneInitializer);
         currentScene.load();
         currentScene.init();
         currentScene.start();
@@ -146,7 +140,7 @@ public class Window {
         this.imGuiLayer.initImGui();
 
         // We want to use the Scene called "LevelEditorScene" this is in the scenes package
-        Window.changeScene(0);
+        Window.changeScene(new LevelEditorSceneInitializer());
     }
 
     // Render Loop
@@ -186,7 +180,7 @@ public class Window {
 
             // Render the game
             this.framebuffer.bind();
-            glClearColor(r, g, b, a);
+            glClearColor(1.f, 1.f, 1.f, 1.f);
             glClear(GL_COLOR_BUFFER_BIT);
 
             if(dt >= 0) {
@@ -243,5 +237,14 @@ public class Window {
 
     public static ImGuiLayer getImGuiLayer() {
         return get().imGuiLayer;
+    }
+
+    @Override
+    public void onNotify(GameObject object, Event event) {
+        if (event.type == EventType.GameEngineStartPlay) {
+            System.out.println("Starting play!");
+        } else if(event.type == EventType.GameEngineStopPlay) {
+            System.out.println("Ending play");
+        }
     }
 }

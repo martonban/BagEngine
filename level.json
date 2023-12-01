@@ -5,8 +5,8 @@
         "type": "components.Transform",
         "properties": {
           "position": {
-            "x": 543.61115,
-            "y": 447.10883
+            "x": 672.1801,
+            "y": 319.79495
           },
           "scale": {
             "x": 32.0,
@@ -14,69 +14,7 @@
           },
           "rotation": 0.0,
           "zIndex": 0,
-          "uid": 18
-        }
-      },
-      {
-        "type": "components.SpriteRenderer",
-        "properties": {
-          "color": {
-            "x": 1.0,
-            "y": 1.0,
-            "z": 1.0,
-            "w": 1.0
-          },
-          "sprite": {
-            "width": 16.0,
-            "height": 16.0,
-            "texture": {
-              "filePath": "assets/spritesheets/decorationsAndBlocks.png",
-              "width": 112,
-              "height": 192
-            },
-            "texCoords": [
-              {
-                "x": 0.14285715,
-                "y": 0.8333333
-              },
-              {
-                "x": 0.14285715,
-                "y": 0.75
-              },
-              {
-                "x": 0.0,
-                "y": 0.75
-              },
-              {
-                "x": 0.0,
-                "y": 0.8333333
-              }
-            ]
-          },
           "uid": 19
-        }
-      }
-    ],
-    "uid": 1,
-    "name": "Sprite_Object_Gen",
-    "doSerialization": true
-  },
-  {
-    "components": [
-      {
-        "type": "components.Transform",
-        "properties": {
-          "position": {
-            "x": 486.76056,
-            "y": 220.52959
-          },
-          "scale": {
-            "x": 32.0,
-            "y": 32.0
-          },
-          "rotation": -35.0,
-          "zIndex": -59,
-          "uid": 20
         }
       },
       {
@@ -99,275 +37,61 @@
             "texCoords": [
               {
                 "x": 0.85714287,
-                "y": 0.9166667
+                "y": 1.0
               },
               {
                 "x": 0.85714287,
-                "y": 0.8333333
-              },
-              {
-                "x": 0.71428573,
-                "y": 0.8333333
+                "y": 0.9166667
               },
               {
                 "x": 0.71428573,
                 "y": 0.9166667
+              },
+              {
+                "x": 0.71428573,
+                "y": 1.0
               }
             ]
           },
+          "uid": 20
+        }
+      },
+      {
+        "type": "physics2d.components.RigidBody2D",
+        "properties": {
+          "velocity": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "angularDamping": 0.8,
+          "linearDamping": 0.9,
+          "mass": 0.0,
+          "bodyType": "Dynamic",
+          "fixRotation": false,
+          "continuousCollision": false,
           "uid": 21
         }
-      }
-    ],
-    "uid": 2,
-    "name": "Sprite_Object_Gen",
-    "doSerialization": true
-  },
-  {
-    "components": [
-      {
-        "type": "components.Transform",
-        "properties": {
-          "position": {
-            "x": 609.4647,
-            "y": 245.1272
-          },
-          "scale": {
-            "x": 45.333755,
-            "y": 30.804108
-          },
-          "rotation": -30.0,
-          "zIndex": 0,
-          "uid": 40
-        }
       },
       {
-        "type": "components.SpriteRenderer",
+        "type": "physics2d.components.Box2DCollider",
         "properties": {
-          "color": {
-            "x": 0.253391,
-            "y": 0.8683274,
-            "z": 0.0,
-            "w": 1.0
-          },
-          "sprite": {
-            "width": 16.0,
-            "height": 16.0,
-            "texture": {
-              "filePath": "assets/spritesheets/decorationsAndBlocks.png",
-              "width": 112,
-              "height": 192
-            },
-            "texCoords": [
-              {
-                "x": 0.71428573,
-                "y": 0.41666666
-              },
-              {
-                "x": 0.71428573,
-                "y": 0.33333334
-              },
-              {
-                "x": 0.5714286,
-                "y": 0.33333334
-              },
-              {
-                "x": 0.5714286,
-                "y": 0.41666666
-              }
-            ]
-          },
-          "uid": 41
-        }
-      }
-    ],
-    "uid": 3,
-    "name": "Sprite_Object_Gen",
-    "doSerialization": true
-  },
-  {
-    "components": [
-      {
-        "type": "components.Transform",
-        "properties": {
-          "position": {
-            "x": 607.8495,
-            "y": 160.0
-          },
-          "scale": {
-            "x": 32.0,
-            "y": 32.0
-          },
-          "rotation": 0.0,
-          "zIndex": 0,
-          "uid": 42
-        }
-      },
-      {
-        "type": "components.SpriteRenderer",
-        "properties": {
-          "color": {
+          "halfSize": {
             "x": 0.0,
-            "y": 1.0,
-            "z": 0.9852216,
-            "w": 1.0
+            "y": 0.0
           },
-          "sprite": {
-            "width": 16.0,
-            "height": 16.0,
-            "texture": {
-              "filePath": "assets/spritesheets/decorationsAndBlocks.png",
-              "width": 112,
-              "height": 192
-            },
-            "texCoords": [
-              {
-                "x": 1.0,
-                "y": 0.75
-              },
-              {
-                "x": 1.0,
-                "y": 0.6666667
-              },
-              {
-                "x": 0.85714287,
-                "y": 0.6666667
-              },
-              {
-                "x": 0.85714287,
-                "y": 0.75
-              }
-            ]
+          "origin": {
+            "x": 0.0,
+            "y": 0.0
           },
-          "uid": 43
-        }
-      }
-    ],
-    "uid": 4,
-    "name": "Sprite_Object_Gen",
-    "doSerialization": true
-  },
-  {
-    "components": [
-      {
-        "type": "components.Transform",
-        "properties": {
-          "position": {
-            "x": 597.8954,
-            "y": 160.0
+          "offset": {
+            "x": 0.0,
+            "y": 0.0
           },
-          "scale": {
-            "x": 32.0,
-            "y": 32.0
-          },
-          "rotation": 0.0,
-          "zIndex": 0,
-          "uid": 44
-        }
-      },
-      {
-        "type": "components.SpriteRenderer",
-        "properties": {
-          "color": {
-            "x": 1.0,
-            "y": 0.0,
-            "z": 0.0,
-            "w": 1.0
-          },
-          "sprite": {
-            "width": 16.0,
-            "height": 16.0,
-            "texture": {
-              "filePath": "assets/spritesheets/decorationsAndBlocks.png",
-              "width": 112,
-              "height": 192
-            },
-            "texCoords": [
-              {
-                "x": 0.71428573,
-                "y": 0.083333336
-              },
-              {
-                "x": 0.71428573,
-                "y": 0.0
-              },
-              {
-                "x": 0.5714286,
-                "y": 0.0
-              },
-              {
-                "x": 0.5714286,
-                "y": 0.083333336
-              }
-            ]
-          },
-          "uid": 45
+          "uid": 22
         }
       }
     ],
     "uid": 5,
-    "name": "Sprite_Object_Gen",
-    "doSerialization": true
-  },
-  {
-    "components": [
-      {
-        "type": "components.Transform",
-        "properties": {
-          "position": {
-            "x": 170.36615,
-            "y": 197.5547
-          },
-          "scale": {
-            "x": 160.972,
-            "y": 138.4
-          },
-          "rotation": 404.0,
-          "zIndex": 0,
-          "uid": 64
-        }
-      },
-      {
-        "type": "components.SpriteRenderer",
-        "properties": {
-          "color": {
-            "x": 1.0,
-            "y": 1.0,
-            "z": 1.0,
-            "w": 1.0
-          },
-          "sprite": {
-            "width": 16.0,
-            "height": 16.0,
-            "texture": {
-              "filePath": "assets/spritesheets/decorationsAndBlocks.png",
-              "width": 112,
-              "height": 192
-            },
-            "texCoords": [
-              {
-                "x": 0.5714286,
-                "y": 0.8333333
-              },
-              {
-                "x": 0.5714286,
-                "y": 0.75
-              },
-              {
-                "x": 0.42857143,
-                "y": 0.75
-              },
-              {
-                "x": 0.42857143,
-                "y": 0.8333333
-              }
-            ]
-          },
-          "uid": 65
-        }
-      }
-    ],
-    "uid": 6,
     "name": "Sprite_Object_Gen",
     "doSerialization": true
   }
