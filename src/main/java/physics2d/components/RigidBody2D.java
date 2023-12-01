@@ -12,10 +12,10 @@ public class RigidBody2D extends Component {
     private float mass = 0.f;
     private BodyType bodyType = BodyType.Dynamic;
 
-    private boolean fixRotation = false;
-    private boolean continuousCollision = false;
+    private boolean fixedRotation = false;
+    private boolean continuousCollision = true;
 
-    private Body rawBody = null;
+    private transient Body rawBody = null;
 
     @Override
     public void update(float dt) {
@@ -25,6 +25,7 @@ public class RigidBody2D extends Component {
             );
             this.gameObject.transform.rotation = (float) Math.toDegrees(rawBody.getAngle());
         }
+        System.out.println(rawBody.getPosition().x + "  " + rawBody.getPosition().y);
     }
 
     public Vector2f getVelocity() {
@@ -67,12 +68,12 @@ public class RigidBody2D extends Component {
         this.bodyType = bodyType;
     }
 
-    public boolean isFixRotation() {
-        return fixRotation;
+    public boolean isFixedRotation() {
+        return fixedRotation;
     }
 
-    public void setFixRotation(boolean fixRotation) {
-        this.fixRotation = fixRotation;
+    public void setFixedRotation(boolean fixedRotation) {
+        this.fixedRotation = fixedRotation;
     }
 
     public boolean isContinuousCollision() {

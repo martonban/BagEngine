@@ -22,6 +22,22 @@ public class PropertiesWindow {
         this.pickingTexture = pickingTexture;
     }
 
+    public void update(float dt, Scene currentScene) {
+        debounce -= dt;
+        if(MouseListener.mouseButtonDown(GLFW_MOUSE_BUTTON_LEFT) && debounce < 0) {
+            int x = (int)MouseListener.getScreenX();
+            int y = (int)MouseListener.getScreenY();
+            int gameObjectID = pickingTexture.readPixel(x, y);
+            GameObject pickedObj = currentScene.getGameObject(gameObjectID);
+            if(pickedObj != null && pickedObj.getComponent(NoPickable.class) == null) {
+                activeGameObject = pickedObj;
+            } else if(pickedObj == null && !MouseListener.isDragging()) {
+                activeGameObject = null;
+            }
+            this.debounce = 0.2f;
+        }
+    }
+
     public void imgui() {
         if(activeGameObject != null) {
             ImGui.begin("Properties");
@@ -56,19 +72,7 @@ public class PropertiesWindow {
         return activeGameObject;
     }
 
-    public void update(float dt, Scene currentScene) {
-        debounce -= dt;
-        if(MouseListener.mouseButtonDown(GLFW_MOUSE_BUTTON_LEFT) && debounce < 0) {
-            int x = (int)MouseListener.getScreenX();
-            int y = (int)MouseListener.getScreenY();
-            int gameObjectID = pickingTexture.readPixel(x, y);
-            GameObject pickedObj = currentScene.getGameObject(gameObjectID);
-            if(pickedObj != null && pickedObj.getComponent(NoPickable.class) == null) {
-                activeGameObject = pickedObj;
-            } else if(pickedObj == null && !MouseListener.isDragging()) {
-                activeGameObject = null;
-            }
-            this.debounce = 0.2f;
-        }
+    public void setActiveGameObject(GameObject go) {
+        this.activeGameObject = go;
     }
 }

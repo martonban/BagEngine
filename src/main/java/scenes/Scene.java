@@ -10,6 +10,8 @@ import engine.GameObject;
 import engine.GameObjectDeserializer;
 import imgui.ImGui;
 import org.joml.Vector2f;
+import org.lwjgl.system.CallbackI;
+import physics2d.Physics2D;
 import renderer.Renderer;
 
 import java.io.FileWriter;
@@ -33,16 +35,20 @@ import java.util.Optional;
 * */
 
 public class Scene {
-    private Renderer renderer = new Renderer();
+    private Renderer renderer;
     private Camera camera;
-    private List <GameObject> gameObjects = new ArrayList<>();
-    private boolean isRunning = false;
-    private boolean levelLoaded = false;
+    private Physics2D physics2D;
+    private List <GameObject> gameObjects;
+    private boolean isRunning;
 
     private SceneInitializer sceneInitializer;
 
     public Scene(SceneInitializer sceneInitializer) {
         this.sceneInitializer = sceneInitializer;
+        this.physics2D = new Physics2D();
+        this.renderer = new Renderer();
+        this.gameObjects = new ArrayList<>();
+        this.isRunning = false;
     }
 
     public void init() {
@@ -57,6 +63,7 @@ public class Scene {
             GameObject go = gameObjects.get(i);
             go.start();
             this.renderer.add(go);
+            this.physics2D.add(go);
         }
         isRunning = true;
     }
@@ -70,14 +77,39 @@ public class Scene {
             gameObjects.add(go);
             go.start();
             this.renderer.add(go);
+            this.physics2D.add(go);
+        }
+    }
+
+    public void editorUpdate(float dt) {
+        this.camera.adjustProjection();
+        for (int i = 0; i < gameObjects.size(); i++) {
+            GameObject go = gameObjects.get(i);
+            go.editorUpdate(dt);
+
+            if(go.isDead()) {
+                gameObjects.remove(i);
+                this.renderer.destroyGameObject(go);
+                this.physics2D.destroyGameObject(go);
+                i--;
+            }
         }
     }
 
     public void update(float dt) {
         this.camera.adjustProjection();
+        this.physics2D.update(dt);
 
-        for (GameObject go : this.gameObjects) {
+        for (int i = 0; i < gameObjects.size(); i++) {
+            GameObject go = gameObjects.get(i);
             go.update(dt);
+
+            if(go.isDead()) {
+                gameObjects.remove(i);
+                this.renderer.destroyGameObject(go);
+                this.physics2D.destroyGameObject(go);
+                i--;
+            }
         }
     }
 
@@ -103,7 +135,7 @@ public class Scene {
     }
 
     // This part is responsible when we stop the engine, everything is gonna saved by the Serializer.
-    public void saveExit() {
+    public void save() {
         // We create and set up the Gson, to know which class which Serializer(class) will use.
         // If the code gets a Component, it will use ComponentDeserializer
         // If the code gets a GameObject, it will use GameObjectDeserializer
@@ -169,7 +201,12 @@ public class Scene {
             maxCompId++;
             GameObject.init(maxGoId);
             Component.init(maxCompId);
-            this.levelLoaded = true;
+        }
+    }
+
+    public void destroy() {
+        for(GameObject go: gameObjects) {
+            go.destroy();
         }
     }
 

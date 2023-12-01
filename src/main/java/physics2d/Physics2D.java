@@ -18,7 +18,7 @@ public class Physics2D {
     private World world = new World(gravity);
 
     private float physicsTime = 0.f;
-    private float physicsTimeStep = 1.f / 60.f;
+    private float physicsTimeStep = 1.0f / 60.0f;
     private int velocityIterations = 8;
     private int positionIterations = 3;
 
@@ -32,7 +32,7 @@ public class Physics2D {
             bodyDef.position.set(transform.position.x, transform.position.y);
             bodyDef.angularDamping = rb.getAngularDamping();
             bodyDef.linearDamping = rb.getLinearDamping();
-            bodyDef.fixedRotation = rb.isFixRotation();
+            bodyDef.fixedRotation = rb.isFixedRotation();
             bodyDef.bullet = rb.isContinuousCollision();
 
             switch (rb.getBodyType()) {
@@ -65,11 +65,21 @@ public class Physics2D {
         }
     }
 
+    public void destroyGameObject(GameObject go) {
+        RigidBody2D rb = go.getComponent(RigidBody2D.class);
+        if (rb != null) {
+            if(rb.getRawBody() != null) {
+                world.destroyBody(rb.getRawBody());
+                rb.setRawBody(null);
+            }
+        }
+    }
+
     public void update(float dt) {
         physicsTime += dt;
         if(physicsTime >= 0) {
             physicsTime -= physicsTimeStep;
-            world.step(physicsTime, velocityIterations, positionIterations);
+            world.step(physicsTimeStep, velocityIterations, positionIterations);
         }
 
 

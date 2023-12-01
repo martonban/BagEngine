@@ -35,8 +35,20 @@ public class SpriteRenderer extends Component {
         }
     }
 
+    public void setDirty() {
+        this.isDirty = true;
+    }
+
     @Override
     public void update(float dt) {
+        if (!this.lastTransform.equals(this.gameObject.transform)) {
+            this.gameObject.transform.copy(this.lastTransform);
+            isDirty = true;
+        }
+    }
+
+    @Override
+    public void editorUpdate(float dt) {
         if (!this.lastTransform.equals(this.gameObject.transform)) {
             this.gameObject.transform.copy(this.lastTransform);
             isDirty = true;

@@ -29,7 +29,7 @@ public class EditorCamera extends Component {
     }
 
     @Override
-    public void update(float dt) {
+    public void editorUpdate(float dt) {
         // DRAG FUNCTIONS
         // Didn't register as a drag, but we have to decrease the value of the dragBounce
         if (MouseListener.mouseButtonDown(GLFW_MOUSE_BUTTON_MIDDLE) && dragDebounce > 0.0f) {
