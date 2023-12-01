@@ -23,7 +23,7 @@ public class Gizmo extends Component{
 
     protected GameObject activeGameObject = null;
 
-    private Vector2f xAxisOffset = new Vector2f(24f / 80f, 6.0f / 80f);
+    private Vector2f xAxisOffset = new Vector2f(24f / 80f, 0);
     private Vector2f yAxisOffset = new Vector2f(-7f / 80f, 21f / 80f);
     protected boolean xAxisActive = false;
     protected boolean yAxisActive = false;
