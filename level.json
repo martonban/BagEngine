@@ -5,8 +5,8 @@
         "type": "components.Transform",
         "properties": {
           "position": {
-            "x": 3.3733554,
-            "y": 0.8715565
+            "x": 3.373355,
+            "y": 0.8627846
           },
           "scale": {
             "x": 0.25,
@@ -91,7 +91,7 @@
         }
       }
     ],
-    "uid": 82,
+    "uid": 0,
     "name": "Sprite_Object_Gen",
     "doSerialization": true,
     "isDead": false
@@ -188,7 +188,7 @@
         }
       }
     ],
-    "uid": 83,
+    "uid": 1,
     "name": "Sprite_Object_Gen",
     "doSerialization": true,
     "isDead": false
@@ -285,7 +285,7 @@
         }
       }
     ],
-    "uid": 84,
+    "uid": 2,
     "name": "Sprite_Object_Gen",
     "doSerialization": true,
     "isDead": false
@@ -348,7 +348,7 @@
         }
       }
     ],
-    "uid": 85,
+    "uid": 3,
     "name": "Sprite_Object_Gen",
     "doSerialization": true,
     "isDead": false
@@ -411,7 +411,7 @@
         }
       }
     ],
-    "uid": 86,
+    "uid": 4,
     "name": "Sprite_Object_Gen",
     "doSerialization": true,
     "isDead": false
@@ -474,7 +474,7 @@
         }
       }
     ],
-    "uid": 87,
+    "uid": 5,
     "name": "Sprite_Object_Gen",
     "doSerialization": true,
     "isDead": false

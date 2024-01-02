@@ -3,7 +3,6 @@ package engine;
 import observers.EventSystem;
 import observers.Observer;
 import observers.events.Event;
-import observers.events.EventType;
 import org.lwjgl.Version;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.opengl.GL;
@@ -19,24 +18,32 @@ import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.system.MemoryUtil.NULL;
 
+/*
+*   This is the most important class in the project
+*   Mainly we implement the
+*
+*
+*/
+
 public class Window implements Observer {
+    // Singleton instance
+    private static Window window = null;
+
+    // GLFW related data fields
+    private long glfwWindow;
     private int width, height;
     private String title;
 
+    // Scene Manager related data fields
+    private static Scene currentScene;
+    private boolean runtimePlaying = false;
 
-    private static Window window = null;
-
-    // Memory Address for the window
-    private long glfwWindow;
-
+    // Engine related instances
     private ImGuiLayer imGuiLayer;
     private Framebuffer framebuffer;
     private PickingTexture pickingTexture;
 
-    private static Scene currentScene;
-    private boolean runtimePlaying = false;
-
-    // The Constructor is private because the Window needs to be Singleton.
+    // The constructor is private because the Window needs to be Singleton.
     private Window() {
         this.width = 1920;
         this.height = 1080;
@@ -44,7 +51,15 @@ public class Window implements Observer {
         EventSystem.abbObserver(this);
     }
 
-    // "Scene Manager": we can set the scene which one we need and load/init/start/ is
+    // Because this class need to be Singleton when we call it, we need to create it.
+    public static Window get() {
+        if (Window.window == null){
+            Window.window = new Window();
+        }
+        return Window.window;
+    }
+
+    // "Scene Manager": Based on the Observer ("onNotify" function) this function is going to change the scene
     public static void changeScene(SceneInitializer sceneInitializer){
         if(currentScene != null) {
             currentScene.destroy();
@@ -57,12 +72,27 @@ public class Window implements Observer {
         currentScene.start();
     }
 
-    // Because this class need to be Singleton when we call it, we need to create it.
-    public static Window get() {
-        if (Window.window == null){
-            Window.window = new Window();
+    // We implemented the Observer system that's why we can use get notified when certain events happened
+    // e.g., start to play, back to the editor, etc.
+    @Override
+    public void onNotify(GameObject object, Event event) {
+        switch (event.type) {
+            case GameEngineStartPlay:
+                this.runtimePlaying = true;
+                currentScene.save();
+                Window.changeScene(new LevelEditorSceneInitializer());
+                break;
+            case GameEngineStopPlay:
+                this.runtimePlaying = false;
+                Window.changeScene(new LevelEditorSceneInitializer());
+                break;
+            case LoadLevel:
+                window.changeScene(new LevelEditorSceneInitializer());
+                break;
+            case SaveLevel:
+                currentScene.save();
+                break;
         }
-        return Window.window;
     }
 
     // Runtime
@@ -97,7 +127,6 @@ public class Window implements Observer {
         glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE);
         glfwWindowHint(GLFW_MAXIMIZED, GLFW_TRUE);
 
-
         // Init the Window
         glfwWindow = glfwCreateWindow(this.width, this.height, this.title, NULL, NULL);
 
@@ -105,7 +134,7 @@ public class Window implements Observer {
             throw new IllegalStateException("Failed to load GLFW !");
         }
 
-        // Setting up the mouse and the keyborad callback functions
+        // Setting up the mouse and the keyboard callback functions
         glfwSetCursorPosCallback(glfwWindow, MouseListener::mousePosCallback);
         glfwSetMouseButtonCallback(glfwWindow, MouseListener::mouseButtonCallback);
         glfwSetScrollCallback(glfwWindow, MouseListener::mouseScrollCallback);
@@ -161,7 +190,7 @@ public class Window implements Observer {
             glfwPollEvents();
 
             // This part is the responsible for the PickingTexture functionality
-            // Getting ready OpenGL to render for the PickingTexture functionality
+            // Getting ready OpenGL to render the PickingTexture
             glDisable(GL_BLEND);
             pickingTexture.enableWriting();
             glViewport(0, 0, 1920, 1080);
@@ -193,11 +222,11 @@ public class Window implements Observer {
                 } else {
                     currentScene.editorUpdate(dt);
                 }
-
                 currentScene.render();
             }
 
             this.framebuffer.unbind();
+            // After the game get rendered we render the UI
             this.imGuiLayer.update(dt, currentScene);
             glfwSwapBuffers(glfwWindow);
 
@@ -242,26 +271,5 @@ public class Window implements Observer {
 
     public static ImGuiLayer getImGuiLayer() {
         return get().imGuiLayer;
-    }
-
-    @Override
-    public void onNotify(GameObject object, Event event) {
-        switch (event.type) {
-            case GameEngineStartPlay:
-                this.runtimePlaying = true;
-                currentScene.save();
-                Window.changeScene(new LevelEditorSceneInitializer());
-                break;
-            case GameEngineStopPlay:
-                this.runtimePlaying = false;
-                Window.changeScene(new LevelEditorSceneInitializer());
-                break;
-            case LoadLevel:
-                window.changeScene(new LevelEditorSceneInitializer());
-                break;
-            case SaveLevel:
-                currentScene.save();
-                break;
-        }
     }
 }

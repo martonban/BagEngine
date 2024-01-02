@@ -38,24 +38,25 @@
             <artifactId>junit</artifactId>
             <version>4.13.2</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/io.imgui.java/imgui-java-lwjgl3 -->
+        <!-- https://mvnrepository.com/artifact/io.github.spair/imgui-java-binding -->
         <dependency>
-            <groupId>io.imgui.java</groupId>
-            <artifactId>imgui-java-lwjgl3</artifactId>
-            <version>1.80-1.5.0</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/io.imgui.java/imgui-java-binding -->
-        <dependency>
-            <groupId>io.imgui.java</groupId>
+            <groupId>io.github.spair</groupId>
             <artifactId>imgui-java-binding</artifactId>
-            <version>1.80-1.5.0</version>
+            <version>1.86.11</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/io.imgui.java/imgui-java-natives-windows -->
+        <!-- https://mvnrepository.com/artifact/io.github.spair/imgui-java-lwjgl3 -->
         <dependency>
-            <groupId>io.imgui.java</groupId>
-            <artifactId>imgui-java-natives-windows</artifactId>
-            <version>1.80-1.5.0</version>
+            <groupId>io.github.spair</groupId>
+            <artifactId>imgui-java-lwjgl3</artifactId>
+            <version>1.86.11</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/io.github.spair/imgui-java-natives-windows -->
+        <dependency>
+            <groupId>io.github.spair</groupId>
+            <artifactId>imgui-java-natives-windows</artifactId>
+            <version>1.86.11</version>
+        </dependency>
+
         <!-- https://mvnrepository.com/artifact/org.jbox2d/jbox2d-library -->
         <dependency>
             <groupId>org.jbox2d</groupId>
@@ -144,12 +145,4 @@
         </dependency>
     </dependencies>
 
-    <repositories>
-        <repository>
-            <id>central</id>
-            <name>bintray-plugins</name>
-            <url>https://jcenter.bintray.com</url>
-        </repository>
-
-    </repositories>
 </project>
