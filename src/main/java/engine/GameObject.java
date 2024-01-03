@@ -29,7 +29,7 @@ public class GameObject {
     public transient Transform transform;
     public static int ID_COUNTER = 0;
     public int uid = -1;
-    private String name;
+    public String name;
     private boolean doSerialization = true;
     private boolean isDead = false;
 

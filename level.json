@@ -5,7 +5,7 @@
         "type": "components.Transform",
         "properties": {
           "position": {
-            "x": 3.373355,
+            "x": 3.3881576,
             "y": 0.8627846
           },
           "scale": {
@@ -475,6 +475,69 @@
       }
     ],
     "uid": 5,
+    "name": "Sprite_Object_Gen",
+    "doSerialization": true,
+    "isDead": false
+  },
+  {
+    "components": [
+      {
+        "type": "components.Transform",
+        "properties": {
+          "position": {
+            "x": -3.25,
+            "y": 0.25
+          },
+          "scale": {
+            "x": 0.25,
+            "y": 0.25
+          },
+          "rotation": 0.0,
+          "zIndex": 0,
+          "uid": 102
+        }
+      },
+      {
+        "type": "components.SpriteRenderer",
+        "properties": {
+          "color": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "sprite": {
+            "width": 16.0,
+            "height": 16.0,
+            "texture": {
+              "filePath": "assets/spritesheets/decorationsAndBlocks.png",
+              "width": 112,
+              "height": 192
+            },
+            "texCoords": [
+              {
+                "x": 0.5714286,
+                "y": 0.8333333
+              },
+              {
+                "x": 0.5714286,
+                "y": 0.75
+              },
+              {
+                "x": 0.42857143,
+                "y": 0.75
+              },
+              {
+                "x": 0.42857143,
+                "y": 0.8333333
+              }
+            ]
+          },
+          "uid": 103
+        }
+      }
+    ],
+    "uid": 11,
     "name": "Sprite_Object_Gen",
     "doSerialization": true,
     "isDead": false
