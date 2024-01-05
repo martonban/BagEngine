@@ -34,6 +34,7 @@ public class Transform extends Component {
 
     @Override
     public void imgui() {
+        gameObject.name = BagImGui.inputText("Name: ", gameObject.name);
         BagImGui.drawVec2Control("Position", this.position);
         BagImGui.drawVec2Control("Scale", this.scale, 32.0f);
         this.rotation = BagImGui.dragFloat("Rotation", this.rotation);

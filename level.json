@@ -5,8 +5,8 @@
         "type": "components.Transform",
         "properties": {
           "position": {
-            "x": 3.3881576,
-            "y": 0.8627846
+            "x": 3.3747456,
+            "y": 0.8826542
           },
           "scale": {
             "x": 0.25,
@@ -91,7 +91,7 @@
         }
       }
     ],
-    "uid": 0,
+    "uid": 24,
     "name": "Sprite_Object_Gen",
     "doSerialization": true,
     "isDead": false
@@ -102,8 +102,8 @@
         "type": "components.Transform",
         "properties": {
           "position": {
-            "x": 3.3078032,
-            "y": 1.75
+            "x": 3.2436588,
+            "y": 1.7587721
           },
           "scale": {
             "x": 0.25,
@@ -188,7 +188,7 @@
         }
       }
     ],
-    "uid": 1,
+    "uid": 25,
     "name": "Sprite_Object_Gen",
     "doSerialization": true,
     "isDead": false
@@ -199,8 +199,8 @@
         "type": "components.Transform",
         "properties": {
           "position": {
-            "x": 3.5755668,
-            "y": 1.85
+            "x": 3.515728,
+            "y": 1.7548912
           },
           "scale": {
             "x": 0.25,
@@ -285,7 +285,7 @@
         }
       }
     ],
-    "uid": 2,
+    "uid": 26,
     "name": "Sprite_Object_Gen",
     "doSerialization": true,
     "isDead": false
@@ -348,7 +348,7 @@
         }
       }
     ],
-    "uid": 3,
+    "uid": 27,
     "name": "Sprite_Object_Gen",
     "doSerialization": true,
     "isDead": false
@@ -359,8 +359,8 @@
         "type": "components.Transform",
         "properties": {
           "position": {
-            "x": -2.4664476,
-            "y": 2.5302155
+            "x": -3.0438235,
+            "y": 2.5910802
           },
           "scale": {
             "x": 0.25,
@@ -411,7 +411,7 @@
         }
       }
     ],
-    "uid": 4,
+    "uid": 28,
     "name": "Sprite_Object_Gen",
     "doSerialization": true,
     "isDead": false
@@ -474,7 +474,7 @@
         }
       }
     ],
-    "uid": 5,
+    "uid": 29,
     "name": "Sprite_Object_Gen",
     "doSerialization": true,
     "isDead": false
@@ -537,7 +537,7 @@
         }
       }
     ],
-    "uid": 11,
+    "uid": 30,
     "name": "Sprite_Object_Gen",
     "doSerialization": true,
     "isDead": false
