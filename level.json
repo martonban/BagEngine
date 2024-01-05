@@ -91,8 +91,8 @@
         }
       }
     ],
-    "uid": 24,
-    "name": "Sprite_Object_Gen",
+    "uid": 0,
+    "name": "Solid_One",
     "doSerialization": true,
     "isDead": false
   },
@@ -188,7 +188,7 @@
         }
       }
     ],
-    "uid": 25,
+    "uid": 1,
     "name": "Sprite_Object_Gen",
     "doSerialization": true,
     "isDead": false
@@ -285,7 +285,7 @@
         }
       }
     ],
-    "uid": 26,
+    "uid": 2,
     "name": "Sprite_Object_Gen",
     "doSerialization": true,
     "isDead": false
@@ -348,7 +348,7 @@
         }
       }
     ],
-    "uid": 27,
+    "uid": 3,
     "name": "Sprite_Object_Gen",
     "doSerialization": true,
     "isDead": false
@@ -411,7 +411,7 @@
         }
       }
     ],
-    "uid": 28,
+    "uid": 4,
     "name": "Sprite_Object_Gen",
     "doSerialization": true,
     "isDead": false
@@ -474,7 +474,7 @@
         }
       }
     ],
-    "uid": 29,
+    "uid": 5,
     "name": "Sprite_Object_Gen",
     "doSerialization": true,
     "isDead": false
@@ -537,7 +537,7 @@
         }
       }
     ],
-    "uid": 30,
+    "uid": 6,
     "name": "Sprite_Object_Gen",
     "doSerialization": true,
     "isDead": false
