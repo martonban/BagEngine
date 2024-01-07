@@ -52,7 +52,7 @@ public class EditorCamera extends Component {
         // ZOOM FUNCTION
         if (MouseListener.getScrollY() != 0.0f) {
             float addValue = (float)Math.pow(Math.abs(MouseListener.getScrollY() * Settings.SCROLL_SENSITIVITY),
-                    1.0 / levelEditorCamera.getZoom());
+                    1 / levelEditorCamera.getZoom());
             addValue *= Settings.REVERSE_ZOOM * (Math.signum(MouseListener.getScrollY()));
             levelEditorCamera.addZoom(addValue);
         }
