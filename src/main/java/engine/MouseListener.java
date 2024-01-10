@@ -18,7 +18,7 @@ import static org.lwjgl.glfw.GLFW.GLFW_RELEASE;
 public class MouseListener {
     private static MouseListener instance;
     private double scrollX, scrollY;
-    private double xPos, yPos, worldX, worldY;
+    private double xPos, yPos;
     private boolean mouseButtonPressed[] = new boolean[9];
     private boolean isDragging;
 

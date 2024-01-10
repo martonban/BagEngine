@@ -38,14 +38,14 @@ public class GameViewWindow {
         ImGui.setCursorPos(windowPos.x, windowPos.y);
 
         leftX = windowPos.x;
-        bottomY = windowPos.y;
+        bottomY = windowPos.y + 15;
         rightX = windowPos.x + windowSize.x;
-        topY = windowPos.y + windowSize.y;
+        topY = windowPos.y + 15 + windowSize.y;
 
         int textureID = Window.getFrameBuffer().getTextureID();
         ImGui.image(textureID, windowSize.x, windowSize.y, 0, 1, 1, 0);
 
-        MouseListener.setGameViewportPos(new Vector2f(windowPos.x, windowPos.y));
+        MouseListener.setGameViewportPos(new Vector2f(windowPos.x, windowPos.y + 15));
         MouseListener.setGameViewportSize(new Vector2f(windowSize.x, windowSize.y));
 
         ImGui.end();
