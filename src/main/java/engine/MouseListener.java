@@ -106,6 +106,28 @@ public class MouseListener {
         }
     }
 
+    public static float getWorldX() {
+        return getWorld().x;
+    }
+
+    public static float getWorldY() {
+        return getWorld().y;
+    }
+
+    public static Vector2f getWorld() {
+        float currentX = getX() - get().gameViewportPos.x;
+        currentX = (currentX / get().gameViewportSize.x) * 2.0f - 1.0f;
+        float currentY = (getY() - get().gameViewportPos.y);
+        currentY = (2.0f * (1.0f - (currentY / get().gameViewportSize.y))) - 1;
+        Vector4f tmp = new Vector4f(currentX, currentY, 0, 1);
+
+        Camera camera = Window.getScene().camera();
+        Matrix4f inverseView = new Matrix4f(camera.getInverseViewMatrix());
+        Matrix4f inverseProjection = new Matrix4f(camera.getInverseProjectionMatrix());
+        tmp.mul(inverseView.mul(inverseProjection));
+        return new Vector2f(tmp.x, tmp.y);
+    }
+
     public static float getScreenX() {
         return getScreen().x;
     }
@@ -118,35 +140,13 @@ public class MouseListener {
         float currentX = getX() - get().gameViewportPos.x;
         currentX = (currentX / get().gameViewportSize.x) * 1920.0f;
 
-        float currentY = getY()- get().gameViewportPos.y;
+        float currentY = getY() - get().gameViewportPos.y;
         currentY = 1080.0f - ((currentY / get().gameViewportSize.y) * 1080.0f);
 
         return new Vector2f(currentX, currentY);
     }
 
-    public static float getWorldX() {
-        return getWorld().x;
-    }
 
-    public static float getWorldY() {
-        return getWorld().y;
-    }
-
-    public static Vector2f getWorld() {
-        float currentX = getX() - get().gameViewportPos.x;
-        currentX = (currentX / get().gameViewportSize.x) * 2.0f - 1.0f;
-        float currentY = getY()- get().gameViewportPos.y;
-        currentY = -((currentY / get().gameViewportSize.y) * 2.0f - 1.0f);
-        Vector4f tmp = new Vector4f(currentX, currentY, 0, 1);
-
-        Camera camera = Window.getScene().camera();
-        Matrix4f inverseView = new Matrix4f(camera.getInverseViewMatrix());
-        Matrix4f inverseProjection = new Matrix4f(camera.getInverseProjectionMatrix());
-
-        tmp.mul(inverseView.mul(inverseProjection));
-
-        return new Vector2f(tmp.x, tmp.y);
-    }
 
 
     public static void setGameViewportPos(Vector2f gameViewportPos) {
