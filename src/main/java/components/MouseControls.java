@@ -45,7 +45,7 @@ public class MouseControls extends Component {
                 debounce = debounceTime;
             }
 
-            if (KeyListener.isKeyPressed(GLFW_KEY_DELETE)) {
+            if (KeyListener.isKeyPressed(GLFW_KEY_ESCAPE)) {
                 holdingObject.destroy();
                 holdingObject = null;
             }
