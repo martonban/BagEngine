@@ -9,6 +9,9 @@ import org.joml.Vector2f;
 import util.AssetPool;
 import util.Settings;
 
+import java.io.File;
+import java.util.Collection;
+
 /*
 *   In the current state of the engine, this is the only Scene what we're using.
 *   Right now we don't have a separate editor and core, so this is THE ENGINE!!!!
@@ -129,6 +132,24 @@ public class LevelEditorSceneInitializer extends SceneInitializer {
                 ImGui.sameLine();
                 ImGui.endTabItem();
             }
+            if(ImGui.beginTabItem("Sounds")) {
+                Collection<Sound> sounds = AssetPool.getAllSound();
+                for (Sound sound : sounds) {
+                    File tmp  = new File(sound.getFilePath());
+                    if(ImGui.button(tmp.getName())) {
+                        if(!sound.isPalying()) {
+                            sound.play();
+                        } else {
+                            sound.stop();
+                        }
+                    }
+                    if(ImGui.getContentRegionAvailX() > 100) {
+                        ImGui.sameLine();
+                    }
+                }
+                ImGui.endTabItem();
+            }
+
             ImGui.endTabBar();
         }
         ImGui.end();
