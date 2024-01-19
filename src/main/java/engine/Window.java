@@ -20,7 +20,6 @@ import util.AssetPool;
 import static org.lwjgl.glfw.Callbacks.glfwFreeCallbacks;
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.openal.ALC10.*;
-import static org.lwjgl.openal.ALC11.ALC_CAPTURE_DEVICE_SPECIFIER;
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.system.MemoryUtil.NULL;
 
@@ -168,7 +167,7 @@ public class Window implements Observer {
         glfwShowWindow(glfwWindow);
 
         // Initialize audio device
-        String defaultDeviceName = alcGetString(0 , ALC_CAPTURE_DEVICE_SPECIFIER);
+        String defaultDeviceName = alcGetString(0 , ALC_DEFAULT_DEVICE_SPECIFIER);
         audioDevice = alcOpenDevice(defaultDeviceName);
 
         // Setup audio context
