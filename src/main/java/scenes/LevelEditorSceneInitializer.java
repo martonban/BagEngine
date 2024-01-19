@@ -137,7 +137,7 @@ public class LevelEditorSceneInitializer extends SceneInitializer {
                 for (Sound sound : sounds) {
                     File tmp  = new File(sound.getFilePath());
                     if(ImGui.button(tmp.getName())) {
-                        if(!sound.isPalying()) {
+                        if(!sound.isPlaying()) {
                             sound.play();
                         } else {
                             sound.stop();

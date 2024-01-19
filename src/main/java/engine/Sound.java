@@ -13,10 +13,10 @@ public class Sound {
     private int sourceID;
     private String filePath;
 
-    private boolean isPalying = false;
+    private boolean isPlaying = false;
 
-    public Sound(String filePath, boolean loops) {
-        this.filePath = filePath;
+    public Sound(String filepath, boolean loops) {
+        this.filePath = filepath;
 
         // Allocate space to store the return information from stb
         stackPush();
@@ -27,13 +27,13 @@ public class Sound {
         ShortBuffer rawAudioBuffer = stb_vorbis_decode_filename(filePath, channelsBuffer, sampleRateBuffer);
 
         if(rawAudioBuffer == null) {
-            System.out.println("Not able to load the audio!" + filePath);
+            System.out.println("Could not load sound '" + filePath);
             stackPop();
             stackPop();
             return;
         }
 
-        // Retrieve extra information stored in the buffers by stb
+        // Retrieve the extra information stored in the buffers by stb
         int channels = channelsBuffer.get();
         int sampleRate = sampleRateBuffer.get();
         // Free memory
@@ -51,7 +51,7 @@ public class Sound {
         bufferID = alGenBuffers();
         alBufferData(bufferID, format, rawAudioBuffer, sampleRate);
 
-        // Generate Source
+        // Generate the source
         sourceID = alGenSources();
 
         alSourcei(sourceID, AL_BUFFER, bufferID);
@@ -59,7 +59,7 @@ public class Sound {
         alSourcei(sourceID, AL_POSITION, 0);
         alSourcef(sourceID, AL_GAIN, 0.3f);
 
-        // Free stb audio raw buffer
+        // Free stb raw audio buffer
         free(rawAudioBuffer);
     }
 
@@ -71,21 +71,21 @@ public class Sound {
 
     public void play() {
         int state = alGetSourcei(sourceID, AL_SOURCE_STATE);
-        if (state == AL_STOPPED) {
-           isPalying = false;
-           alSourcei(sourceID, AL_POSITION, 0);
+        if(state == AL_STOPPED) {
+            isPlaying = false;
+            alSourcei(sourceID, AL_POSITION, 0);
         }
 
-        if (!isPalying) {
+        if(!isPlaying) {
             alSourcePlay(sourceID);
-            isPalying = true;
+            isPlaying = true;
         }
     }
     
     public void stop() {
-        if (isPalying) {
-           alSourceStop(sourceID);
-           isPalying = false;
+        if(isPlaying) {
+            alSourceStop(sourceID);
+            isPlaying = false;
         }
     }
 
@@ -93,11 +93,11 @@ public class Sound {
         return this.filePath;
     }
 
-    public boolean isPalying() {
+    public boolean isPlaying() {
         int state = alGetSourcei(sourceID, AL_SOURCE_STATE);
         if(state == AL_STOPPED) {
-            isPalying = false;
+            isPlaying = false;
         }
-        return isPalying;
+        return isPlaying;
     }
 }
