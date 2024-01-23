@@ -20,27 +20,9 @@ public class PropertiesWindow {
     private GameObject activeGameObject = null;
     private PickingTexture pickingTexture;
 
-    private float debounce = 0.2f;
-
     public PropertiesWindow(PickingTexture pickingTexture) {
         this.activeGameObjects = new ArrayList<>();
         this.pickingTexture = pickingTexture;
-    }
-
-    public void update(float dt, Scene currentScene) {
-        debounce -= dt;
-        if(MouseListener.mouseButtonDown(GLFW_MOUSE_BUTTON_LEFT) && debounce < 0) {
-            int x = (int)MouseListener.getScreenX();
-            int y = (int)MouseListener.getScreenY();
-            int gameObjectID = pickingTexture.readPixel(x, y);
-            GameObject pickedObj = currentScene.getGameObject(gameObjectID);
-            if(pickedObj != null && pickedObj.getComponent(NoPickable.class) == null) {
-                setActiveGameObject(pickedObj);
-            } else if(pickedObj == null && !MouseListener.isDragging()) {
-                activeGameObject = null;
-            }
-            this.debounce = 0.2f;
-        }
     }
 
     public void imgui() {
@@ -95,5 +77,9 @@ public class PropertiesWindow {
 
     public void addActiveGameObject(GameObject go) {
         this.activeGameObjects.add(go);
+    }
+
+    public PickingTexture getPickingTexture() {
+        return this.pickingTexture;
     }
 }

@@ -245,7 +245,6 @@ public class Window implements Observer {
             glClear(GL_COLOR_BUFFER_BIT);
 
             if(dt >= 0) {
-                DebugDraw.draw();
                 Renderer.bindShader(defaultShader);
                 if(runtimePlaying) {
                     currentScene.update(dt);
@@ -253,11 +252,15 @@ public class Window implements Observer {
                     currentScene.editorUpdate(dt);
                 }
                 currentScene.render();
+                DebugDraw.draw();
             }
 
             this.framebuffer.unbind();
             // After the game get rendered we render the UI
             this.imGuiLayer.update(dt, currentScene);
+
+            MouseListener.endFrame();
+
             glfwSwapBuffers(glfwWindow);
 
             // We have to do this for the EditorCamera because we call adjustProjection function in the scene. To do this, we have to call the endFrame function because we need to reset everything
