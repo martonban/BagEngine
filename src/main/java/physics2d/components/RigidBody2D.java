@@ -25,7 +25,6 @@ public class RigidBody2D extends Component {
             );
             this.gameObject.transform.rotation = (float) Math.toDegrees(rawBody.getAngle());
         }
-        System.out.println(rawBody.getPosition().x + "  " + rawBody.getPosition().y);
     }
 
     public Vector2f getVelocity() {

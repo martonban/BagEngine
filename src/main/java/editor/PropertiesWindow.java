@@ -75,7 +75,6 @@ public class PropertiesWindow {
             for(GameObject go : activeGameObjects) {
                 SpriteRenderer spr = go.getComponent(SpriteRenderer.class);
                 if(spr != null) {
-                    System.out.println(i);
                     spr.setColor(activeGameObjectsOGColor.get(i));
                 }
                 i++;
