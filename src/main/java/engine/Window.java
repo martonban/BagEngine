@@ -258,7 +258,7 @@ public class Window implements Observer {
             this.framebuffer.unbind();
             // After the game get rendered we render the UI
             this.imGuiLayer.update(dt, currentScene);
-
+            KeyListener.endFrame();
             MouseListener.endFrame();
 
             glfwSwapBuffers(glfwWindow);
