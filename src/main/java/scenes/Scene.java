@@ -220,4 +220,8 @@ public class Scene {
                 .findFirst();
         return result.orElse(null);
     }
+
+    public Physics2D getPhysics() {
+        return this.physics2D;
+    }
 }
