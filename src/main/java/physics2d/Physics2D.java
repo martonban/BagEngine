@@ -7,10 +7,7 @@ import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.*;
 import org.joml.Vector2f;
-import physics2d.components.Box2DCollider;
-import physics2d.components.CircleCollider;
-import physics2d.components.RayCastInfo;
-import physics2d.components.RigidBody2D;
+import physics2d.components.*;
 
 public class Physics2D {
     private Vec2 gravity = new Vec2(0, -10.f);
@@ -20,6 +17,10 @@ public class Physics2D {
     private float physicsTimeStep = 1.0f / 60.0f;
     private int velocityIterations = 8;
     private int positionIterations = 3;
+
+    public Physics2D() {
+        world.setContactListener(new BagContactListener());
+    }
 
     public void add(GameObject go) {
         RigidBody2D rb = go.getComponent(RigidBody2D.class);
@@ -49,6 +50,7 @@ public class Physics2D {
             rb.setRawBody(body);
             CircleCollider circleCollider;
             Box2DCollider box2DCollider;
+            PillBoxCollider pillBoxCollider;
 
             if((circleCollider = go.getComponent(CircleCollider.class)) != null) {
                 addCircleCollider(rb, circleCollider);
@@ -56,6 +58,10 @@ public class Physics2D {
 
             if ((box2DCollider = go.getComponent(Box2DCollider.class)) != null) {
                 addBox2DCollider(rb, box2DCollider);
+            }
+
+            if((pillBoxCollider = go.getComponent(PillBoxCollider.class)) != null) {
+                addPillBoxCollider(rb, pillBoxCollider);
             }
         }
     }
@@ -119,19 +125,6 @@ public class Physics2D {
         body.resetMassData();
     }
 
-    public void resetCircleCollider(RigidBody2D rb, CircleCollider circleCollider) {
-        Body body = rb.getRawBody();
-        if(body == null) return;
-
-        int size = fixtureListSize(body);
-        for (int i = 0; i < size; i++) {
-            body.destroyFixture(body.getFixtureList());
-        }
-
-        addCircleCollider(rb, circleCollider);
-        body.resetMassData();
-    }
-
     public void addBox2DCollider(RigidBody2D rb, Box2DCollider box2DCollider) {
         Body body = rb.getRawBody();
         assert body != null : "Raw Body must not be null";
@@ -151,6 +144,19 @@ public class Physics2D {
         body.createFixture(fixtureDef);
     }
 
+    public void resetCircleCollider(RigidBody2D rb, CircleCollider circleCollider) {
+        Body body = rb.getRawBody();
+        if(body == null) return;
+
+        int size = fixtureListSize(body);
+        for (int i = 0; i < size; i++) {
+            body.destroyFixture(body.getFixtureList());
+        }
+
+        addCircleCollider(rb, circleCollider);
+        body.resetMassData();
+    }
+
     public void addCircleCollider(RigidBody2D rb, CircleCollider circleCollider) {
         Body body = rb.getRawBody();
         assert body != null : "Raw Body must not be null";
@@ -168,6 +174,28 @@ public class Physics2D {
         body.createFixture(fixtureDef);
     }
 
+    public void resetPillBoxCollider(RigidBody2D rb, PillBoxCollider pb) {
+        Body body = rb.getRawBody();
+        if(body == null) return;
+
+        int size = fixtureListSize(body);
+        for (int i = 0; i < size; i++) {
+            body.destroyFixture(body.getFixtureList());
+        }
+
+        addPillBoxCollider(rb, pb);
+        body.resetMassData();
+    }
+
+    public void addPillBoxCollider(RigidBody2D rb, PillBoxCollider pb) {
+        Body body = rb.getRawBody();
+        assert body != null : "Raw Body must not be null";
+
+        addBox2DCollider(rb, pb.getBox());
+        addCircleCollider(rb, pb.getTopCircle());
+        addCircleCollider(rb, pb.getBottomCircle());
+    }
+
     private int fixtureListSize(Body body) {
         int size = 0;
         Fixture fixture = body.getFixtureList();
@@ -176,5 +204,13 @@ public class Physics2D {
             fixture = fixture.m_next;
         }
         return size;
+    }
+
+    public boolean isLocked() {
+        return world.isLocked();
+    }
+
+    public Vector2f getGravity() {
+        return new Vector2f(this.world.getGravity().x, this.world.getGravity().y);
     }
 }

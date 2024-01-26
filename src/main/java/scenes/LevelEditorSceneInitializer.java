@@ -6,6 +6,9 @@ import engine.*;
 import imgui.ImGui;
 import imgui.ImVec2;
 import org.joml.Vector2f;
+import physics2d.components.Box2DCollider;
+import physics2d.components.RigidBody2D;
+import physics2d.enums.BodyType;
 import util.AssetPool;
 import util.Settings;
 
@@ -54,6 +57,9 @@ public class LevelEditorSceneInitializer extends SceneInitializer {
         AssetPool.addSpritesheet("assets/spritesheets/items.png",
                 new Spritesheet(AssetPool.getTexture("assets/spritesheets/items.png"),
                         16, 16, 43, 0));
+        AssetPool.addSpritesheet("assets/spritesheets/bigSpritesheet.png",
+                new Spritesheet(AssetPool.getTexture("assets/spritesheets/bigSpritesheet.png"),
+                        16, 32, 42, 0));
         AssetPool.addSpritesheet("assets/spritesheets/gizmos.png",
                 new Spritesheet(AssetPool.getTexture("assets/spritesheets/gizmos.png"),
                         24, 48, 3, 0));
@@ -109,6 +115,9 @@ public class LevelEditorSceneInitializer extends SceneInitializer {
 
                 float windowsX2 = windowPos.x + windowSize.x;
                 for (int i = 0; i < sprites.size(); i++) {
+                    if(i == 34) continue;
+                    if(i > 34 && i < 61) continue;
+
                     Sprite sprite = sprites.getSprite(i);
                     float spriteWidth = sprite.getWidth() * Settings.EDITOR_TILE_SIZE_SCALE_XY;
                     float spriteHeight = sprite.getHeight() * Settings.EDITOR_TILE_SIZE_SCALE_XY;
@@ -118,6 +127,13 @@ public class LevelEditorSceneInitializer extends SceneInitializer {
                     ImGui.pushID(i);
                     if (ImGui.imageButton(id, spriteWidth, spriteHeight, texCoords[2].x, texCoords[0].y, texCoords[0].x, texCoords[2].y)) {
                         GameObject object = Prefabs.generateSpriteObject(sprite, 0.25f, 0.25f);
+                        RigidBody2D rb = new RigidBody2D();
+                        rb.setBodyType(BodyType.Static);
+                        object.addComponent(rb);
+                        Box2DCollider b2d = new Box2DCollider();
+                        b2d.setHalfSize(new Vector2f(0.25f, 0.25f));
+                        object.addComponent(b2d);
+                        object.addComponent(new Ground());
                         developerToolGameObject.getComponent(MouseControls.class).pickupObject(object);
                     }
                     ImGui.popID();

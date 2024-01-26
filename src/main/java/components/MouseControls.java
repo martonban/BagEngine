@@ -27,6 +27,7 @@ public class MouseControls extends Component {
     private Vector2f boxSelectStart = new Vector2f();
     private Vector2f boxSelectEnd = new Vector2f();
 
+
     public void pickupObject(GameObject go) {
         if(this.holdingObject != null) {
             this.holdingObject.destroy();
