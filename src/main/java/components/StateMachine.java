@@ -62,7 +62,6 @@ public class StateMachine extends Component{
                 }
             }
         }
-        System.out.println("Uanble to find state '" + animationTitle + "' in set default state");
     }
 
     public void trigger(String trigger) {
@@ -85,7 +84,6 @@ public class StateMachine extends Component{
                 return;
             }
         }
-        System.out.println("Unable to find trigger '" + trigger + "'");
     }
 
     @Override

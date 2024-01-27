@@ -162,7 +162,7 @@ public class Window implements Observer {
         glfwMakeContextCurrent(glfwWindow);
 
         // Enable """"v-sync""""
-        //glfwSwapInterval(1);
+        glfwSwapInterval(1);
 
         // Show the Window
         glfwShowWindow(glfwWindow);

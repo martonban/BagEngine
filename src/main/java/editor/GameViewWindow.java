@@ -9,6 +9,7 @@ import observers.EventSystem;
 import observers.events.Event;
 import observers.events.EventType;
 import org.joml.Vector2f;
+import util.AssetPool;
 
 // TODO: getWantCaptureMouse() is sussy
 
@@ -23,9 +24,11 @@ public class GameViewWindow {
         ImGui.beginMenuBar();
         if (ImGui.menuItem("Play", "", isPlaying, !isPlaying)) {
             isPlaying = true;
+            AssetPool.getSound("assets/sounds/main-theme-overworld.ogg").play();
             EventSystem.notify(null, new Event(EventType.GameEngineStartPlay));
         }
         if(ImGui.menuItem("Stop", "", !isPlaying, isPlaying)) {
+            AssetPool.getSound("assets/sounds/main-theme-overworld.ogg").stop();
             isPlaying = false;
             EventSystem.notify(null, new Event(EventType.GameEngineStopPlay));
         }

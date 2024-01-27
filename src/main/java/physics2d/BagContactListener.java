@@ -25,7 +25,7 @@ public class BagContactListener implements ContactListener {
         }
 
         for (Component c : objB.getAllComponents()) {
-            c.beginCollision(objA, contact, aNormal);
+            c.beginCollision(objA, contact, bNormal);
         }
     }
 
