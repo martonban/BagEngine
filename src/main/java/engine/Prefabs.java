@@ -19,6 +19,28 @@ public class Prefabs {
         return block;
     }
 
+    public static GameObject generateQuestionBlock() {
+        Spritesheet questionBlockSprites = AssetPool.getSpritesheet("assets/spritesheets/items.png");
+        GameObject questionBlock = generateSpriteObject(questionBlockSprites.getSprite(0), 0.25f, 0.25f);
+
+        AnimationState flicker = new AnimationState();
+        flicker.title = "Flicker";
+        float defaultFrameTime = 0.23f;
+        flicker.addFrame(questionBlockSprites.getSprite(0), 0.57f);
+        flicker.addFrame(questionBlockSprites.getSprite(1), defaultFrameTime);
+        flicker.addFrame(questionBlockSprites.getSprite(2), defaultFrameTime);
+        flicker.setLoop(true);
+
+        StateMachine stateMachine = new StateMachine();
+        stateMachine.addState(flicker);
+        stateMachine.setDefaultState(flicker.title);
+        questionBlock.addComponent(stateMachine);
+        questionBlock.addComponent(new Ground());
+
+        return questionBlock;
+    }
+
+
     public static GameObject generatePlayer() {
         Spritesheet playerSprites = AssetPool.getSpritesheet("assets/spritesheets/spritesheet.png");
         Spritesheet bigPlayerSprites = AssetPool.getSpritesheet("assets/spritesheets/bigSpritesheet.png");

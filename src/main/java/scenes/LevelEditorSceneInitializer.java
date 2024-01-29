@@ -162,6 +162,19 @@ public class LevelEditorSceneInitializer extends SceneInitializer {
                     developerToolGameObject.getComponent(MouseControls.class).pickupObject(object);
                 }
                 ImGui.sameLine();
+
+                Spritesheet item1 = AssetPool.getSpritesheet("assets/spritesheets/items.png");
+                sprite = item1.getSprite(0);
+                id = sprite.getTexId();
+                texCoords = sprite.getTexCoords();
+
+                if (ImGui.imageButton(id, spriteWidth, spriteHeight, texCoords[2].x, texCoords[0].y, texCoords[0].x, texCoords[2].y)) {
+                    GameObject object = Prefabs.generateQuestionBlock();
+                    developerToolGameObject.getComponent(MouseControls.class).pickupObject(object);
+                }
+                ImGui.sameLine();
+
+
                 ImGui.endTabItem();
             }
             if(ImGui.beginTabItem("Sounds")) {
