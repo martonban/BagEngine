@@ -8,9 +8,7 @@ import components.Transform;
 import engine.Camera;
 import engine.GameObject;
 import engine.GameObjectDeserializer;
-import imgui.ImGui;
 import org.joml.Vector2f;
-import org.lwjgl.system.CallbackI;
 import physics2d.Physics2D;
 import renderer.Renderer;
 
@@ -210,6 +208,15 @@ public class Scene {
         for(GameObject go: gameObjects) {
             go.destroy();
         }
+    }
+
+    public <T extends Component> GameObject getGameObjectWith(Class<T> clazz) {
+        for(GameObject go : gameObjects) {
+            if(go.getComponent(clazz) != null) {
+                return go;
+            }
+        }
+        return null;
     }
 
     public List<GameObject> getGameObjects() {

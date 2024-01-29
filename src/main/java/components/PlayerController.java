@@ -157,4 +157,8 @@ public class PlayerController extends Component {
             }
         }
     }
+
+    public boolean hasWon() {
+        return false;
+    }
 }
