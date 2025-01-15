@@ -1,14 +1,13 @@
 # Bag Engine (POC)
 Bag Engine is a 2D game engine in Java and OpenGL. This is tutorial based project based on [this tutorial series](https://www.youtube.com/watch?v=VyKE7vz65rY&list=PLtrSb4XxIVbp8AKuEAlwNXDxr99e3woGE). 
 
-# Functinalites:
-## Editor and a Runtime 
+# Functionalities:
+## Editor and Runtime 
 ![editor2](https://github.com/user-attachments/assets/36513b81-04e7-4583-8ea5-05d21b99fbb3)
 *Bag Engine has a Runtime and an editor. With this you can create your own levels.*
 
-## ECS System with GUI to edit any GameObjects
+## ECS System
 ![ecs2](https://github.com/user-attachments/assets/f59f5f8a-82f2-431c-8e27-0a6d4fa45080)
-
 
 ## Physics System
 ![physics2](https://github.com/user-attachments/assets/3b892c6d-d840-4e36-99af-9a1f3a54272c)
@@ -17,11 +16,8 @@ Bag Engine is a 2D game engine in Java and OpenGL. This is tutorial based projec
 ## Docking 
 ![docking](https://github.com/user-attachments/assets/ecffaa47-ccd3-4412-bb4a-a0e23f72fd1f)
 
-
-
 ## Asset Browser
 ![assets](https://github.com/user-attachments/assets/ed6c4e4b-da8e-4213-b71a-2a2b83eddb10)
-
 
 
 # Libaries/Technologies:
