@@ -1,5 +1,5 @@
-# Bag Engine (POC)
-Bag Engine is a 2D game engine in Java and OpenGL. This is tutorial based project based on [this tutorial series](https://www.youtube.com/watch?v=VyKE7vz65rY&list=PLtrSb4XxIVbp8AKuEAlwNXDxr99e3woGE). Note this is not a fully functioning engine. The main motivation was learning how game engines are working. 
+# [WIP] Bag Engine
+Bag Engine is a 2D game engine in Java and OpenGL. This is currently a tutorial based project ([this tutorial series](https://www.youtube.com/watch?v=VyKE7vz65rY&list=PLtrSb4XxIVbp8AKuEAlwNXDxr99e3woGE)). But I am going to work on this engine after a year. Curretly I am going to work on some critical bugs I have to fix, before implementing some new features.
 
 # Functionalities:
 ## Editor and Runtime 
