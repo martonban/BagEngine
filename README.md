@@ -1,6 +1,13 @@
 # Bag Engine [Working on the 0.2 version]
 Bag Engine is a 2D game engine built with Java and OpenGL, utilizing industry-standard libraries such as ImGui, Box2D, and GSON. While the engine is not yet production-ready, you can check the milestones section for a better understanding of its current state.
 
+# Libraries/Technologies:
+- Maven: Build System
+- LWJGL: For window handling, graphics and math libraries.
+- Box2D: For Physics
+- GSON: For serialization/deserialization
+- ImGUI: For UI elements
+
 # Functionalities:
 ## Editor and Runtime 
 Bag Engine includes an integrated editor that allows users to create and modify their own levels, with a built-in serializer handling the saving process. By pressing the 'Play' button, users can launch a debug mode, which effectively serves as the engine's runtime. <br><br><br>
@@ -24,9 +31,3 @@ The engine features an Asset Browser, which allows users to browse through tiles
 ![assets](https://github.com/user-attachments/assets/ed6c4e4b-da8e-4213-b71a-2a2b83eddb10)
 
 
-# Libraries/Technologies:
-- Maven: Build System
-- LWJGL: For window handling, graphics and math libraries.
-- Box2D: For Physics
-- GSON: For serialization/deserialization
-- ImGUI: For UI elements
