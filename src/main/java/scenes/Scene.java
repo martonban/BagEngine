@@ -21,14 +21,15 @@ import java.util.List;
 import java.util.Optional;
 
 /*
-*   This abstract class is the "blueprint" for a scene in the game engine. So If you want to create a scene, you need to implement this calss
+*   This abstract class is the "blueprint" for a scene in the game engine. So If you want to create a scene,
+*   you need to implement this class
 *
 *   Attributes:
 *       - Renderer: The Engine supports different renderers. Currently, we have a texture and a line renderer. This is an instance of the renderer class.
 *       - Camera: Every Scene needs to have a Camera.
 *       - gameObjects: It's a list of GameObjects. Every scene has their own GameObjects. There are multiples, so that's why it's a list.
 *       - activeGameObject: In the editor we can edit the attributes of an object through imGUI. So we need to know which game object are we editing.
-*       - isRunning: Self-explanatory
+*       - isRunning: Boolean data field.
 *       - levelLoaded: This engine is support serialization. That data is annotated when the engine is ready to run (loaded every data from serializer)
 * */
 

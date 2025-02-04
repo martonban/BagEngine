@@ -26,17 +26,14 @@ import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.system.MemoryUtil.NULL;
 
 /*
-*   This is the most important class in the project
-*   Mainly we implement the
-*
-*
+
 */
 
 public class Window implements Observer {
     // Singleton instance
     private static Window window = null;
 
-    // GLFW related data fields
+    // Window related data fields (GLFW)
     private long glfwWindow;
     private int width, height;
     private String title;
@@ -304,9 +301,7 @@ public class Window implements Observer {
         return 16.0f / 9.0f;
     }
 
-    public static ImGuiLayer getImGuiLayer() {
-        return get().imGuiLayer;
-    }
+    public static ImGuiLayer getImGuiLayer() {return get().imGuiLayer;}
 
     public static Physics2D getPhysics() {
         return currentScene.getPhysics();
