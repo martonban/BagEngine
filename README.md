@@ -2,6 +2,9 @@
 👷🏻‍♂️ Warning: This project is not yet production-ready. The source code contains many bugs, but development continues after a one-year break! <br><br>
 Bag Engine is a 2D game engine built with Java and OpenGL, utilizing industry-standard libraries such as ImGui, Box2D, and GSON. While the engine is not yet production-ready, you can check the milestones section for a better understanding of its current state.
 
+# Documentation
+If you want to understand Bag Engine better please visit the [documentation](https://martonban.notion.site/Bag-Engine-Docs-18a2493db6ef803ca04cc6ab0cf9193d). Note that the engine is not production-ready software yet. Thus, I am not able to host a professional website for it. Primarily, my goal with this documentation is to improve my written English, as I still have to rely on ChatGPT for better phrasing, which isn’t ideal. :)
+
 # Libraries/Technologies:
 - Maven: Build System
 - LWJGL: For window handling, graphics and math libraries.
