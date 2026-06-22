@@ -1,5 +1,16 @@
 package util;
 
+/*
+*-------------------------------------------------------------------------------------------------
+*                                           Setting
+*
+*   This class will store the runtime settings. Based on this information the runtime will start
+*
+*
+*-------------------------------------------------------------------------------------------------
+*/
+
+
 // TODO:: MORE ELEGANT SOLUTION FOR SETTINGS
 public class Settings {
     // CONTROLS

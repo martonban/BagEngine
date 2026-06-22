@@ -7,7 +7,7 @@ import physics.primitives.BagCircle;
 import renderer.Line2D;
 import util.JMath;
 
-public class BagIntersectionDetector2D {
+public class  BagIntersectionDetector2D {
 
     public static boolean pointOnLine(Vector2f point, Line2D line) {
         float dx = line.getEnd().x - line.getStart().x;
